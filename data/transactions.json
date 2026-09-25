@@ -35,7 +35,7 @@
       "verification": "explorer_observed",
       "observation_date": "2026-09-25",
       "token_contract": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
-      "publication_review_rechecked": true
+      "rechecked_on_observation_date": true
     },
     {
       "id": "A3",
@@ -93,7 +93,7 @@
       "verification": "explorer_observed",
       "observation_date": "2026-09-25",
       "token_contract": "0xEE4b70720945fDd39bb88D4eB8FfA4cA018986b7",
-      "publication_review_rechecked": true,
+      "rechecked_on_observation_date": true,
       "amount_semantics": "Repeated display amount in two selected event rows; not canonical USDT0 value",
       "lookalike_collector": "0x770b1a3789F71427D4216d19f73DA558503463Ee",
       "lookalike_staging": "0xe4107cc60D53C494eb66D9cC478855d2EE10d946"
@@ -165,7 +165,7 @@
       "fee": "0.000020",
       "source_balance_before": "8157882.528393",
       "source_balance_after": "8157882.528373",
-      "publication_review_rechecked": true,
+      "rechecked_on_observation_date": true,
       "archived_explorer_json": "data/explorer/xrpl-failed-payment.json"
     },
     {

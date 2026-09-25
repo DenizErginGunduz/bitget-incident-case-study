@@ -1,6 +1,6 @@
 # Screenshot and data provenance
 
-Both images are genuine browser screenshots of public, signed-out explorer views, saved on **25 September 2026 during the publication review**. File-save times and digests are recorded in `../data/capture-manifest.json`; those times are local filesystem metadata, not trusted capture attestations. The images show the visible viewport; no labels, amounts or transaction fields were edited. They are illustrative excerpts rather than authenticated ledger evidence.
+Both images are browser screenshots of public explorer views, saved on **25 September 2026**. File-save times and digests are recorded in `../data/capture-manifest.json`; those times are local filesystem metadata, not trusted capture attestations. The images show the visible viewport; no labels, amounts or transaction fields were edited. They are illustrative excerpts rather than authenticated ledger evidence.
 
 | File | Source | What it shows |
 |---|---|---|

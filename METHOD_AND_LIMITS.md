@@ -1,63 +1,62 @@
-# Method, limits and publication review
+# Method and limitations
 
-## Research status
+## Scope and selection
 
-This is a publishable **bounded, early investigation note and teaching case**. It is not a complete forensic reconstruction or a validated detection product. Its professional standard depends on maintaining that scope: each material claim has an identifiable source, direct observations are distinguished from interpretation, and unresolved work is visible.
+This study examines 13 selected transactions associated with the 24 September 2026 Bitget incident. The sample covers an Arbitrum transfer and conversion path, an XRPL payment sequence, and an Optimism/Ethereum address relationship. It is a purposive sample assembled from public research leads, not a complete or statistically representative incident population.
 
-The underlying record was collected on 25 September 2026 through public explorers and a free authenticated Arkham session. The selected transaction interval is 24 September 19:01:20 UTC through 25 September 02:55:23 UTC. That is a sample boundary, not the start/end of the incident. This release does not attempt to incorporate every later public update.
+The transaction interval runs from **24 September 19:01:20 UTC to 25 September 02:55:23 UTC**. This is a sample boundary, not the start or end of the incident. Bitget's reported loss and third-party aggregate estimates provide context; neither is independently reconstructed from the selected records.
 
-During the publication review, the official notice and A2/A5/X4 were reopened. Two viewport screenshots and X4's visible Raw JSON representation were preserved. Most other transaction observations are retained as manually transcribed fields and source links; exact per-page capture times were not logged during the earlier work. No fabricated precision is added retrospectively.
+## Collection and preservation
 
-## Evidence hierarchy
+Public explorer pages and shared Arkham entity views were inspected on 25 September 2026. Transaction observations are recorded with chain, hash, UTC time, asset, amount, parties, result and analytical role in [the evidence register](EVIDENCE_REGISTER.md) and [structured dataset](data/transactions.json).
 
-| Class | Meaning here | Limitation |
+The official notice and records A2, A5 and X4 were checked again on the same day. Two viewport screenshots and the visible XRPSCAN JSON representation of X4 were retained. The [capture manifest](data/capture-manifest.json) records their source URLs, file-save times and SHA-256 digests. File-save times are filesystem metadata, not trusted timestamp attestations; digests establish file identity, not source authenticity.
+
+Most other observations are preserved as transcribed fields and source links. Exact per-page capture times and full historical Arkham membership pages were not retained. Current explorer labels and entity membership may differ from the recorded observations. No independent node query or cryptographic verification of provider responses was performed.
+
+## Evidence classification
+
+| Class | Meaning in this study | Limitation |
 |---|---|---|
 | Official statement | What Bitget publicly reported | Not independent confirmation of loss, architecture or cause |
-| Explorer observation | Fields or events inspected on a public transaction page | Provider rendering/decoding; not independent node validation |
+| Explorer observation | Fields or events inspected on a public transaction page | Provider rendering and decoding; not independent node validation |
 | Archived explorer representation | X4's visible JSON, retained for offline checks | Includes provider-normalized fields; not an authenticated RPC response |
-| Third-party research | Public analyst totals, hypotheses and shared entities | Attribution required; may reuse the same upstream source |
-| Our derivation | Arithmetic or comparison performed on those observations | Only as sound as the inputs and selected population |
+| Third-party research | Public analyst totals, hypotheses and shared entities | Sources may reuse the same upstream evidence |
+| Derived result | Arithmetic or comparison applied to recorded observations | Conditional on input accuracy and the selected population |
 | Hypothesis | A proposed explanation or monitoring rule | Requires discriminating evidence or evaluation |
 
-AI-assisted search supplied leads. The Grok responses are not treated as evidence and are not republished. AI assistance was also used to organize, draft and check this release. Explorer inspection does not remove the need for independent review.
+Search results and research summaries supplied discovery leads. Transaction claims are supported by the cited explorer observations; discovery material does not substitute for those observations. Wallet labels are attributed to their providers rather than treated as independently authenticated ownership.
 
-## What the research contributes
+## Accounting and graph rules
 
-1. **A concrete settlement/accounting distinction.** The failed XRP request creates a calculable 8.88% overstatement if added to the selected successful external receipts. This is our derived example, not a discovery of missing incident funds.
-2. **A worked graph-contamination example.** The canonical and noncanonical contract/address pairs are linked and compared explicitly. The conclusion concerns evidence quality, not the identity or intent of the extra transaction's author.
-3. **A conservative cluster-extension example.** A user-entity difference is tested against a direct WETH transfer. It becomes a review lead with provenance, not a common-owner conclusion.
-4. **A teachable stopping rule.** Source bridge evidence is preserved without pretending an unmatched destination has been verified.
+- **Selected initial receipts:** A1 and X1/X2/X6 are the sampled external receipts. Their combined value is not presented as a complete incident total.
+- **Failed payments:** X4 remains in the behavioral timeline but contributes zero delivered XRP to the receipt sum. Its requested amount is retained separately.
+- **Source-account transfers:** X3 and X5 are excluded from the external-receipt total because they move value between the two Bitget-labeled source accounts.
+- **Downstream turnover:** Onward transfers, swaps, wrapping and bridge events are not added to initial loss.
+- **Asset identity:** A5 is excluded from the canonical-USDT0 graph because its event-emitting contract differs. A repeated amount or shortened-address resemblance does not resolve that difference.
+- **Cross-chain continuity:** A4 establishes a source deposit. Its destination remains unresolved until the corresponding execution is matched. E2 is an observed mint with an unmatched source burn in this study.
+- **Address relationships:** O1 establishes a value-transfer connection. Common control requires additional evidence, including consideration of service intermediaries.
 
-These are useful analytical contributions. There is no established claim of first discovery, new perpetrator attribution, undisclosed loss or recovered value. The XRP 90% pattern is credited to YFarmX. The research has not surveyed all X posts, private reports or commercial-provider findings, so uniqueness cannot be asserted.
+Amounts are stored as decimal strings. E2 retains only the precision observed in the explorer display and is explicitly marked accordingly. USD figures from external studies retain their source attribution and valuation context; current explorer prices are not substituted for historical prices.
 
-## Why the earlier draft needed strengthening
+## Reproduction and interpretation
 
-- The detailed Arbitrum example could be mistaken for the whole event. The release now opens with incident scale and a selected-sample boundary.
-- “Verified” could suggest node-backed reproduction. This release instead names the verification level and provides one archived explorer representation.
-- Narrative findings were difficult to audit. Stable evidence IDs, structured decimal fields, source links and a small checker now connect claims to inputs.
-- The practical value was implied. The walkthrough explains the question, inspection and stopping condition; the monitoring note states an evaluation plan.
-- A broad claim of originality would have exceeded the evidence. Discovery, replication, derivation and unresolved interpretation are now separated.
+The [offline checker](scripts/reproduce.py) sums the three selected successful XRP receipts, calculates the counterfactual overstatement from adding X4's requested amount, checks selected time intervals and amount differences, and compares the noncanonical contract/address values. For X4 it also reads the archived metadata and checks that the sole affected account's balance decrease equals the recorded fee. Results are recorded in [VALIDATION.md](VALIDATION.md).
 
-## Remaining gaps and priority
+The XRP `floor(balance) × 0.9` hypothesis is attributed to [YFarmX](https://yfarmx.com/bitget-postmortem-2026/). Reproducing two equalities does not establish automation or stale-balance causation. A treasury baseline, complete surrounding history and internal authorization records would be needed to distinguish competing explanations.
 
-| Priority | Open question | Evidence needed | Why it matters |
+The lookalike-record and entity-set comparisons are observations within this investigation. No exhaustive prior-art search establishes first discovery. The 8.88% counterfactual is an accounting illustration on this sample, not a measured provider error rate or detector-performance result.
+
+## Unresolved questions
+
+| Priority | Question | Evidence needed | Analytical consequence |
 |---|---|---|---|
 | 1 | Can the total loss be independently reconciled? | All initial receipts, chain/asset identity, deduplication rules and timestamped prices | Prevents partial scope or downstream turnover from becoming a false total |
-| 1 | Does the TRX item belong to the same initial-outflow population? | Source transactions and a consistent classification rule | Explains a material difference between public estimates |
-| 1 | Can the central observations be independently replayed? | Saved node receipts/logs or validated XRPL metadata with block/ledger references | Reduces dependence on live explorer rendering |
+| 1 | Does the TRX item belong to the same initial-outflow population? | Source transactions and a consistent classification rule | Resolves a material difference between public estimates |
+| 1 | Can the central observations be independently replayed? | Saved node receipts/logs or validated XRPL metadata with block/ledger references | Reduces dependence on explorer rendering |
 | 2 | Did the Across deposit complete, refund or partially fill? | Matched destination execution for A4 | Completes one cross-chain edge |
-| 2 | Does E2 match the proposed source burn? | CCTP message-level match | Avoids linking nearby movements only by time and value |
+| 2 | Does E2 match the proposed source burn? | CCTP message-level match | Avoids linking movements solely by time and value |
 | 2 | Is the XRPL refill sequence abnormal? | Full surrounding history, normal treasury baseline and internal authorization records | Distinguishes incident behavior from routine operations |
-| 3 | How much did all swaps return? | Complete execution population and contemporaneous reference prices | Supports aggregate proceeds/slippage analysis |
+| 3 | How much did all swaps return? | Complete execution population and contemporaneous reference prices | Supports aggregate proceeds and slippage analysis |
 
-No conclusion is made about exploit root cause, named perpetrators, a particular country's involvement, sanctions status, fiat cash-out, freeze/recovery or the effectiveness of Bitget's internal controls. Those require different evidence.
-
-## Privacy and distribution decision
-
-The public package contains public transaction identifiers, public wallet addresses, attributed labels, original analysis and public explorer excerpts. It contains no user account details, customer/KYC data, credentials, private keys, internal Bitget records, private correspondence, job-search information or local session logs. Public signing keys/signatures in the archived XRPL transaction are public ledger data; they are not wallet secrets.
-
-There is consequently no identified sensitive dataset requiring a private companion repository for **this package**. Working chat transcripts and personal workspace files are excluded. Unsupported identity allegations and private leads are excluded too. This is a content review, not a claim that every possible re-identification risk has been eliminated.
-
-If later research obtains non-public records, keep them in a separately controlled private repository and publish only reviewed extracts. Do not temporarily put secrets or private records into a public branch: Git history and forks can retain them. A public pull request is public as well.
-
-No permissive license is assigned to third-party screenshots or data. Attribution and original source links remain with each excerpt; this repository does not grant rights over provider material.
+The selected evidence does not establish exploit root cause, perpetrator identity, national attribution, sanctions status, fiat cash-out, freeze/recovery or the effectiveness of Bitget's internal controls.

@@ -6,7 +6,7 @@ Read this alongside the [evidence register](EVIDENCE_REGISTER.md). All transacti
 
 **Question:** Are we counting initial unauthorized outflows, downstream movements, attempted payments or present holdings?
 
-Start with a worksheet that keeps those categories separate. An initial outflow can later appear as a collector transfer, several swaps and a bridge payout. Adding those rows measures repeated turnover of the same funds. An Arkham entity's present portfolio is also affected by subsequent movements, prices and membership choices.
+Start with a worksheet that keeps those categories separate. An initial outflow can later appear as a collector transfer, several swaps and a bridge payout. Adding those rows measures repeated turnover of the same funds. An Arkham entity's current holdings are also affected by subsequent movements, prices and membership choices.
 
 In this release, only A1 and X1/X2/X6 are included as selected initial external receipts. The USD incident estimate comes from Bitget. We have not reconciled the full incident population, all chains or all first recipients. The sample was selected from public leads and manually inspected; it is not random or representative.
 
@@ -94,15 +94,4 @@ Open **O1**: a shared member sends that address 495.625 WETH on Optimism. This s
 
 **Why:** A cluster is a hypothesis with a provenance trail. Store the reason for each candidate edge and its confidence. Avoid promoting a shared user label into an established fact.
 
-The inspected entities did not include XRPL members. That is a limit of those entity populations, not evidence that the XRP branch is absent or that a paid plan would solve it.
-
-## Suggested six-minute screen-recording sequence
-
-1. **0:00–0:40:** Define the $351.6m context and selected-sample boundary.
-2. **0:40–2:00:** Compare A2 with A5; show the full contract and address differences.
-3. **2:00–3:20:** Open X4, show failure and fee-only balance change; run the offline arithmetic.
-4. **3:20–4:20:** Explain X3–X6, separating observation from the refill hypothesis.
-5. **4:20–5:20:** Show A4's source deposit and explain why the destination remains unresolved.
-6. **5:20–6:00:** State the contribution, attribution and open questions.
-
-Use a signed-out explorer window and these public transaction URLs. Show no private browser tabs, account menus, notifications, saved notes or API keys. This repository includes still screenshots and a recording plan; it does not contain a screen-recording video.
+The inspected entities did not include XRPL members. Their EVM-only coverage cannot establish the absence of an XRP branch. XRPL transactions require a separate evidence source and reconciliation.

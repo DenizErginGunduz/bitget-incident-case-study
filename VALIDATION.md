@@ -1,11 +1,8 @@
-# Validation record
+# Reproduction results
 
-Checked 2026-09-25 11:49 UTC using Python 3.12.14.
+Checked 2026-09-25 12:14 UTC using Python 3.12.14.
 
-- All local Markdown file/image links resolve.
-- The release text was checked for local user paths, the account email and common credential-token prefixes; none were found. This limited pattern check supplements, rather than replaces, content review.
-- Both viewport screenshots were visually reviewed for relevance and private UI content.
-- The offline calculation and archived-metadata checks completed successfully:
+The offline checker completed successfully. Both viewport screenshots were visually checked against the corresponding transaction observations during collection.
 
 ```text
 Scope: offline checks of a selected, manually transcribed explorer sample.
@@ -20,4 +17,4 @@ Noncanonical token and lookalike-address distinctions: passed.
 No node query, ownership attribution, detection-performance test or complete loss reconciliation performed.
 ```
 
-These checks validate package consistency and selected arithmetic. They do not authenticate explorer data, verify all public URLs, establish detector performance or replace independent review. External AI/human critique remains pending.
+These checks establish internal consistency of the selected arithmetic and archived metadata. They do not authenticate explorer data, establish detector performance or replace independent review.

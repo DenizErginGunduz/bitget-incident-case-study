@@ -6,7 +6,7 @@ The investigation asks a practical question: **what evidence turns a displayed t
 
 Bitget reported approximately **$351.6 million** affected by unauthorized transfers. That is the company's estimate, not a loss total independently reconstructed here. This release examines selected Arbitrum and XRP Ledger records, plus an Optimism/Ethereum clustering lead. It does not cover every initial outflow. [Official notice](https://www.bitget.com/support/articles/12560603896024).
 
-**Release:** 25 September 2026. Transaction sample ends at 02:55:23 UTC that day; later movements are outside this release. Most explorer checks were performed earlier that morning; selected records were rechecked and screenshots captured during the publication review. See [provenance and limitations](METHOD_AND_LIMITS.md).
+**Study date:** 25 September 2026. The transaction sample ends at 02:55:23 UTC that day. Explorer observations and screenshot collection took place on 25 September; later fund movements are outside the sample. See [provenance and limitations](METHOD_AND_LIMITS.md).
 
 ## The result
 
@@ -22,9 +22,9 @@ The 8.88% figure is a **counterfactual accounting error calculated on this selec
 
 ![A failed XRP payment changes only the fee payer's balance by the fee](assets/xrp-failed-payment.png)
 
-*XRPSCAN excerpt captured during publication review. The amount field alone does not describe settlement. The full source URL, hash and capture details are in the [asset register](assets/README.md).*
+*XRPSCAN observation dated 25 September 2026. The amount field alone does not describe settlement. The full source URL, hash and capture details are in the [asset register](assets/README.md).*
 
-## Put the $19.67 million example in context
+## Incident scale and sample coverage
 
 The Arbitrum entry is **19,668,851.773202 USDT0**, a small branch of the incident. Three successful XRP receipts in the sample total **102,976,680.091945 XRP**. Neither figure should be confused with the complete incident loss.
 
@@ -46,9 +46,9 @@ The diagram shows selected events, not exhaustive balances. The 500 ETH is an ou
 
 On XRPL, a failed external payment sits between an internal source-account transfer and a subsequent refill. The later external payment succeeded. Keeping failures in the timeline reveals an investigation question that a success-only view loses: **what authorized the refill, and what changed before the next attempt?** Public transactions show the sequence; internal instructions and signing records would be needed to answer the cause.
 
-## What is distinctive, and what is not
+## Interpretation and attribution
 
-This is an **evidence-quality and investigation-method case**, not a claim to have discovered the hack, identified its perpetrators or recovered funds. The contribution is a linked worked example of settlement checks, graph contamination and conservative clustering, including a reproducible calculation of one possible accounting error.
+The selected records illustrate three distinct analytical tasks: establishing settlement, excluding unsupported graph edges and assessing candidate address relationships. The counterfactual accounting calculation quantifies the effect of one classification error within the sample. It does not measure the prevalence of such errors across the incident or across analytics providers.
 
 The XRP 90% amount-pattern hypothesis was first highlighted by **YFarmX**. We rechecked the arithmetic against selected explorer balances; that is replication, not a new discovery. The lookalike-record comparison and entity set comparison are observations made in this investigation, but no exhaustive prior-art search establishes that they were first reported here.
 
@@ -56,9 +56,9 @@ The XRP 90% amount-pattern hypothesis was first highlighted by **YFarmX**. We re
 
 - [Worked investigation: what to inspect, why, and where to stop](WALKTHROUGH.md)
 - [Evidence register: 13 selected transactions and their roles](EVIDENCE_REGISTER.md)
-- [Method, professional review and unresolved questions](METHOD_AND_LIMITS.md)
+- [Method, evidence boundaries and unresolved questions](METHOD_AND_LIMITS.md)
 - [Monitoring implications and a falsifiable evaluation plan](MONITORING.md)
-- [Publication and external-review brief](PUBLICATION_AND_REVIEW.md)
+- [Reproduction results](VALIDATION.md)
 
 The small offline checker needs Python 3.10+ and no dependencies:
 
@@ -66,6 +66,6 @@ The small offline checker needs Python 3.10+ and no dependencies:
 python scripts/reproduce.py
 ```
 
-It recomputes the sample arithmetic and checks the archived failed-payment metadata. **It does not query a node or independently authenticate the other explorer observations.** Source URLs and explicit gaps let a reviewer challenge the conclusions without relying on an AI summary.
+It recomputes the sample arithmetic and checks the archived failed-payment metadata. **It does not query a node or independently authenticate the other explorer observations.** The evidence register links each observation to its source transaction.
 
 Related investigations: [Nomad Bridge](https://github.com/DenizErginGunduz/nomad-bridge-case-study) · [WLFI listing decision](https://github.com/DenizErginGunduz/wlfi-listing-case-study).
