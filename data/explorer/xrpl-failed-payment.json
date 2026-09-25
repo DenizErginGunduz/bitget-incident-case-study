@@ -1,0 +1,53 @@
+{
+  "Amount": "9142093800000",
+  "DeliverMax": "9142093800000",
+  "AuthAccounts": [],
+  "NFTokenOffers": [],
+  "Paths": [],
+  "CredentialIDs": [],
+  "SignerEntries": [],
+  "GenesisMints": [],
+  "Account": "rwTTsHVUDF8Ub2nzV2oAeWxfJzUvobXLEf",
+  "Destination": "rwNhefsz1UQEusxhCvHip3RANinWi4CTck",
+  "DestinationTag": 0,
+  "Fee": 20,
+  "Flags": 2147483648,
+  "LastLedgerSequence": 107212141,
+  "Sequence": 100027164,
+  "SigningPubKey": "02CB82EE4E5038B1AFF5507437680205AB48CBF4A24FAAE1A9CFD3C7D174770D59",
+  "TransactionType": "Payment",
+  "TxnSignature": "304402204E92DD0520C2857E5C55221E9C713C5FA6944BE87BD48677A0FF4595058DD3740220587B51EB5D889570F472868D6A6522BBA1E0F1136D2984872A0DEF725E3E3214",
+  "Memos": [],
+  "Signers": [],
+  "AcceptedCredentials": [],
+  "Hooks": [],
+  "hash": "76474A81759D12B7D98B01C77EB1F5B5E44E345E94BA842482F06010B31EA32C",
+  "ledger_index": 107211143,
+  "ctid": "C663E987003E0000",
+  "validated": true,
+  "meta": {
+    "AffectedNodes": [
+      {
+        "ModifiedNode": {
+          "FinalFields": {
+            "Account": "rwTTsHVUDF8Ub2nzV2oAeWxfJzUvobXLEf",
+            "Balance": "8157882528373",
+            "Flags": 0,
+            "OwnerCount": 0,
+            "Sequence": 100027165
+          },
+          "LedgerEntryType": "AccountRoot",
+          "LedgerIndex": "728D178C210749B46513E27A199D8332004572ADA2BA6BA538E06C94D29E8591",
+          "PreviousFields": {
+            "Balance": "8157882528393",
+            "Sequence": 100027164
+          },
+          "PreviousTxnID": "5A5D3F930E78027C40627D317EF88E5D0D70541E1ACEF83D811AB3A9A0E52AC5",
+          "PreviousTxnLgrSeq": 107210211
+        }
+      }
+    ],
+    "TransactionIndex": 62,
+    "TransactionResult": "tecUNFUNDED_PAYMENT"
+  }
+}

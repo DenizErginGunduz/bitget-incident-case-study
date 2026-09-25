@@ -1,0 +1,23 @@
+{
+  "time_basis": "Local filesystem save time; not a trusted timestamp or node attestation",
+  "files": [
+    {
+      "path": "assets/arb-lookalike-record.png",
+      "source_url": "https://arbiscan.io/tx/0x07bb486af245d53f8823a24c586f97500de6c77d2a3490a2338fdfb35651418d",
+      "saved_at_utc": "2026-09-25T11:48:54.154961+00:00",
+      "sha256": "545b8608ba2599d001c1f501f6964b0e709c4cd95916887c9c3724e6f4592f43"
+    },
+    {
+      "path": "assets/xrp-failed-payment.png",
+      "source_url": "https://xrpscan.com/tx/76474A81759D12B7D98B01C77EB1F5B5E44E345E94BA842482F06010B31EA32C",
+      "saved_at_utc": "2026-09-25T11:48:35.852083+00:00",
+      "sha256": "b02550308db6077e832f353e8965b5729119ac69f324aab2391b30ebfe95c34a"
+    },
+    {
+      "path": "data/explorer/xrpl-failed-payment.json",
+      "source_url": "https://xrpscan.com/tx/76474A81759D12B7D98B01C77EB1F5B5E44E345E94BA842482F06010B31EA32C",
+      "saved_at_utc": "2026-09-25T11:40:26.537083+00:00",
+      "sha256": "84345a62411b365ab446d06db99aebf3faed06af8d834e9c83f9f8c0c2569224"
+    }
+  ]
+}
