@@ -1,6 +1,6 @@
 # Evidence register
 
-Thirteen selected transactions. Amounts are in asset units, not current USD. All observations originate from public explorer pages inspected on 25 September 2026. The machine-readable file is a manual transcription of those observations; only X4 has an archived explorer JSON representation in this release.
+Thirteen selected transactions. Amounts are in asset units, not current USD. All observations originate from public explorer pages inspected on 25 September 2026. The structured dataset is a manual transcription; visible XRPSCAN Raw JSON representations are retained for X1, X2, X4, X5 and X6.
 
 | ID | UTC date/time | Network | Role | Displayed amount / asset | Result | Source |
 |---|---|---|---|---:|---|---|
@@ -18,7 +18,7 @@ Thirteen selected transactions. Amounts are in asset units, not current USD. All
 | O1 | 2026-09-25T02:49:23Z | Optimism | candidate cluster connection | 495.625 WETH | success | [Transaction](https://optimistic.etherscan.io/tx/0x08ebefeeb9630b5e8948f1e208248865bc5e93bfc0597429a8437bde73d3b125) |
 | E2 | 2026-09-25T02:55:23Z | Ethereum | observed mint source unmatched | 1299812.6016 USDC | success | [Transaction](https://etherscan.io/tx/0xe561ab5186cd89309d963f332c048f9eab89028d74d4fedfaf0c78611bd1d9f5) |
 
-**Amount semantics:** X4 delivered zero XRP. A5 is excluded from the canonical-USDT0 graph. A3 has a separate ETH receipt leg. A4 proves only a source deposit. E2 is displayed to limited precision and is not linked here to a source burn. No downstream row is added to the incident loss estimate.
+**Amount semantics:** X4 delivered zero XRP. A5 is excluded from the canonical-USDT0 graph. A3's ETH receipt follows internal contract transfers; the recorded path is not a full execution reconciliation. A4 proves only a source deposit. E2 is displayed to limited precision and is not linked here to a source burn. No downstream row is added to the incident loss estimate.
 
 ## Address roles and attribution
 
@@ -34,12 +34,12 @@ Thirteen selected transactions. Amounts are in asset units, not current USD. All
 
 ## Shared-entity membership observation
 
-Recorded during the earlier 25 September morning session, approximately 09:15 UTC; these are mutable user-created entity populations, not immutable chain records.
+Observed during a 25 September morning session at approximately 09:15 UTC, and independently recaptured later the same day. The [retained membership lists](data/arkham-entity-membership.json) and [overlapping viewport captures](assets/README.md) preserve the later observation. These are mutable user-created entity populations, not immutable chain records or ownership determinations. File-save times do not establish the time of the earlier session.
 
 - [Entity A](https://arkm.com/labels/f22a00ea-0a01-41d4-af5d-9e565bb12f37): 26 EVM members.
 - [Entity B](https://arkm.com/labels/a4845a2d-0aca-4d28-b0fe-fb986c3370ac): 25 EVM members.
 - Observed intersection: 25. A minus B: `0x2b03476bC4070e3019B3D5f4EC46edC27284ecd8`. B minus A: empty.
-- The full historical membership pages were not archived in this public release. This comparison therefore has weaker preservation than the immutable transaction references; reviewers should not assume current membership is unchanged.
+- The later label views yielded the same 26/25 set comparison. The full address lists and captures allow offline inspection of that later snapshot; they do not prove the sets were unchanged at any other time.
 
 ## Claim classification
 

@@ -8,10 +8,85 @@
       "sha256": "545b8608ba2599d001c1f501f6964b0e709c4cd95916887c9c3724e6f4592f43"
     },
     {
+      "path": "assets/arb-lookalike-reverse.png",
+      "source_url": "https://arbiscan.io/tx/0x07bb486af245d53f8823a24c586f97500de6c77d2a3490a2338fdfb35651418d",
+      "saved_at_utc": "2026-09-25T12:31:23.189447+00:00",
+      "sha256": "d7fa6ef633c6e8ead25693306236e25ff5a8a714ccbfa94df91f287bedc32c0c"
+    },
+    {
+      "path": "assets/arkham-entity-a-bottom.png",
+      "source_url": "https://arkm.com/labels/f22a00ea-0a01-41d4-af5d-9e565bb12f37",
+      "saved_at_utc": "2026-09-25T12:27:44.044590+00:00",
+      "sha256": "5a97299b9c9f3886707165cce5c6f9e8e62650daa0606f6a1f794a3d1fde819d"
+    },
+    {
+      "path": "assets/arkham-entity-a-middle.png",
+      "source_url": "https://arkm.com/labels/f22a00ea-0a01-41d4-af5d-9e565bb12f37",
+      "saved_at_utc": "2026-09-25T12:27:50.163601+00:00",
+      "sha256": "1c7529d3c5d13e34e84c757cc42d48b4fbad4c1ee6abf32705cb2ed1c38f259d"
+    },
+    {
+      "path": "assets/arkham-entity-a-top.png",
+      "source_url": "https://arkm.com/labels/f22a00ea-0a01-41d4-af5d-9e565bb12f37",
+      "saved_at_utc": "2026-09-25T12:27:13.016464+00:00",
+      "sha256": "7723752bdfbfb1eed6ce4cdf9ffb4fec5a4b2b7bf96ee3d9cc65d7e7e02c06d5"
+    },
+    {
+      "path": "assets/arkham-entity-b-bottom.png",
+      "source_url": "https://arkm.com/labels/a4845a2d-0aca-4d28-b0fe-fb986c3370ac",
+      "saved_at_utc": "2026-09-25T12:28:09.900616+00:00",
+      "sha256": "f0de54104c1f70737dd72c7227eb1e072fc23c9706527ac23a674b853a79c66f"
+    },
+    {
+      "path": "assets/arkham-entity-b-middle.png",
+      "source_url": "https://arkm.com/labels/a4845a2d-0aca-4d28-b0fe-fb986c3370ac",
+      "saved_at_utc": "2026-09-25T12:28:19.706796+00:00",
+      "sha256": "8afbce2227d4ddc862367b67788b83565383f96b031ad51ed70a8757d71e8934"
+    },
+    {
+      "path": "assets/arkham-entity-b-top.png",
+      "source_url": "https://arkm.com/labels/a4845a2d-0aca-4d28-b0fe-fb986c3370ac",
+      "saved_at_utc": "2026-09-25T12:28:02.902368+00:00",
+      "sha256": "774fe7a0705dc7a170c17fa62f849cdd116c9827acab83c45fd411278da92553"
+    },
+    {
       "path": "assets/xrp-failed-payment.png",
       "source_url": "https://xrpscan.com/tx/76474A81759D12B7D98B01C77EB1F5B5E44E345E94BA842482F06010B31EA32C",
       "saved_at_utc": "2026-09-25T11:48:35.852083+00:00",
       "sha256": "b02550308db6077e832f353e8965b5729119ac69f324aab2391b30ebfe95c34a"
+    },
+    {
+      "path": "data/arkham-entity-membership.json",
+      "source_urls": [
+        "https://arkm.com/labels/f22a00ea-0a01-41d4-af5d-9e565bb12f37",
+        "https://arkm.com/labels/a4845a2d-0aca-4d28-b0fe-fb986c3370ac"
+      ],
+      "saved_at_utc": "2026-09-25T12:28:19.706796+00:00",
+      "sha256": "ce88fd5e4990a37abac7ed70f493cf519aa5dd7bc1e1910921d3bd7aadd11eaa"
+    },
+    {
+      "path": "data/explorer/xrpl-X1.json",
+      "source_url": "https://xrpscan.com/tx/9926E440BC17F3EE7ACB91DB09A44B9781876B19C6E2D046E5E225F758FB25F4",
+      "saved_at_utc": "2026-09-25T12:25:48.225741+00:00",
+      "sha256": "4f5f7e3ed043b4045610ff4aa026fbce99a53c64d7fc26e04a17584a8c0cbb23"
+    },
+    {
+      "path": "data/explorer/xrpl-X2.json",
+      "source_url": "https://xrpscan.com/tx/8DF2ECF67268117A34B89BE9B452D3E888A22CBF03E5C196AD72D8B414A84195",
+      "saved_at_utc": "2026-09-25T12:26:03.138866+00:00",
+      "sha256": "5136eb3f3d6111d335de0137316ba035cc71d8c5beec837f326709f86b7e3c06"
+    },
+    {
+      "path": "data/explorer/xrpl-X5.json",
+      "source_url": "https://xrpscan.com/tx/5DBD1295C3502AFD3B283E0135065B5E41C7FDE73ACE45A6AE94AAC814992308",
+      "saved_at_utc": "2026-09-25T12:26:15.104187+00:00",
+      "sha256": "5d78438c416a21897d02d93a02d534be10b5ed4e636999c10f34e372dceae212"
+    },
+    {
+      "path": "data/explorer/xrpl-X6.json",
+      "source_url": "https://xrpscan.com/tx/41EFBB55219A89AB33F0E6EAFD3420EE8CBA7F03EC08F8BE546CE5DF5F26D42A",
+      "saved_at_utc": "2026-09-25T12:25:31.330790+00:00",
+      "sha256": "02ed625628c2373cb91c9ac5f61442a290ffc02bbfe1ac637eedaa389a07cf29"
     },
     {
       "path": "data/explorer/xrpl-failed-payment.json",

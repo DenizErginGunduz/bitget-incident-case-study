@@ -37,9 +37,11 @@ The following full addresses come from the explorer's visible transfer links:
 | Collector | `0x770b10b273fC44Fe9197D6bF20F145c2e98463Ee` | `0x770b1a3789F71427D4216d19f73DA558503463Ee` |
 | Staging | `0xe410a2E5710Ee787bcaa63f52A3943ff71F0d946` | `0xe4107cc60D53C494eb66D9cC478855d2EE10d946` |
 
-![Arbiscan excerpt showing the different contract and a repeated amount](assets/arb-lookalike-record.png)
+![Arbiscan excerpt showing the different contract and the first repeated-amount row](assets/arb-lookalike-record.png)
 
-*This screenshot is an excerpt, not the complete set of 74 displayed token records. Follow A5 for the second lookalike row and full transaction identity.*
+![Arbiscan excerpt showing the reverse lookalike transfer row](assets/arb-lookalike-reverse.png)
+
+*Two viewports from A5 show the selected lookalike rows; they are excerpts from 74 displayed token records. The contract address and full transaction identity are visible on the source page.*
 
 **Why:** A transfer event emitted by another contract is not evidence that canonical USDT0 moved. Even a genuine event log can describe an economically irrelevant asset. Here the appropriate outcome is to exclude these rows from the USDT0 flow graph and preserve them separately as data-quality evidence. The sender's phishing label is an explorer assertion; the contract/address mismatch is the directly inspectable distinction.
 
@@ -47,11 +49,11 @@ The following full addresses come from the explorer's visible transfer links:
 
 ## 4. Read a swap from asset movements
 
-Open **A3**. Inspect the token and native-asset movements together. The staging account sends 5,000,000 USDT0 and receives 1,829.128842525455829038 ETH in the same transaction through the execution path. The top-level transaction sender differs from the staging account.
+Open **A3**. Inspect the token and internal native-asset movements together. In the selected execution, 5,000,000 USDT0 leaves the staging account for `0xD767…A6836`, then moves toward `0x11111605…CA11` before multiple pool legs. The visible internal transfers show 1,829.128842525455829038 ETH from Arbitrum WETH (`0x82aF…bAB1`) to `0xD767…A6836`, onward to the UniswapX Dutch Order Reactor (`0xB274…a87c`), and finally from that reactor to the staging account. The top-level envelope sender is another address, `0x5F8D…17a2`.
 
 **Why:** A solver or contract may submit a transaction on behalf of an order. Clustering every top-level sender or contract into the investigated party would mix execution infrastructure with the economic parties.
 
-**Record:** each asset leg and its recipient; keep the transaction envelope sender in its own field. One selected execution does not establish total conversion speed, aggregate proceeds or slippage against a historical market benchmark.
+**Record:** each relevant asset leg and its recipient; keep the transaction envelope sender in its own field. These selected legs do not reconcile every event in the execution. One 5 million USDT0 slice does not establish conversion of the full balance, aggregate proceeds or slippage against a historical market benchmark.
 
 ## 5. Preserve a bridge's unresolved destination
 
@@ -73,6 +75,8 @@ The archived explorer representation records a requested 9,142,093.8 XRP but a b
 
 X1, X2 and X6 are the selected successful external payments. X3 and X5 move XRP between two Bitget-labeled source accounts. X4 belongs in the behavioral timeline but contributes zero delivered XRP to the external-receipt total. The script reports the overcount that would result from ignoring this distinction.
 
+The retained XRPSCAN Raw JSON views for X1, X2 and X6 record `tesSUCCESS` and `meta.delivered_amount`. They are explorer-rendered metadata, not independent node responses. X5's retained view records the refill and its destination balance.
+
 ## 7. Ask what the refill means without claiming its cause
 
 | Time, 24 September | Event | Analyst question |
@@ -84,11 +88,13 @@ X1, X2 and X6 are the selected successful external payments. X3 and X5 move XRP 
 
 The refill precedes the successful payment by 39 minutes 19 seconds. Temporal order alone does not establish that the attacker requested the refill or that a specific control failed.
 
+X5 records the source account at **10,340,962.044671 XRP** after the refill; X6 records **10,340,962.044681 XRP** before the external payment. The 10-drop difference is not explained by these selected records, so this is not a complete account timeline. The difference does not change the integer floor used in the 90% arithmetic check.
+
 The [YFarmX hypothesis](https://yfarmx.com/bitget-postmortem-2026/) compares the requested amounts with `floor(balance in XRP) × 0.9`. The arithmetic matches two selected balances. That is a lead for testing stale-balance or repeated-amount logic, not proof of automation. Ordinary treasury operations are a plausible competing explanation requiring a baseline and internal records.
 
 ## 8. Audit a cluster before extending it
 
-The two public Arkham entity membership views recorded in the register contained 26 and 25 EVM addresses, with 25 in common. Their difference was `0x2b03476bC4070e3019B3D5f4EC46edC27284ecd8`.
+The two public Arkham entity membership views recorded in the register contained 26 and 25 EVM addresses, with 25 in common. Their difference was `0x2b03476bC4070e3019B3D5f4EC46edC27284ecd8`. The [archived address lists](data/arkham-entity-membership.json) and overlapping [viewport captures](assets/README.md) preserve the later 25 September observation; they do not retrospectively timestamp the earlier morning observation.
 
 Open **O1**: a shared member sends that address 495.625 WETH on Optimism. This supports a transfer connection and follow-up review. It does not by itself prove common control, criminal intent or a real-world identity. An exchange, router, relayer or independent counterparty can receive value too. The shared entities may also depend on the same original researcher.
 

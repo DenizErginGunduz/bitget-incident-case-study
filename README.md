@@ -1,4 +1,4 @@
-# Bitget | When a transaction row is not a fund flow
+# Bitget case note | Testing fund flow in a selected transaction sample
 
 **An early, bounded on-chain investigation of the 24 September 2026 incident, with a worked guide for transaction-monitoring analysts.**
 
@@ -8,15 +8,15 @@ Bitget reported approximately **$351.6 million** affected by unauthorized transf
 
 **Study date:** 25 September 2026. The transaction sample ends at 02:55:23 UTC that day. Explorer observations and screenshot collection took place on 25 September; later fund movements are outside the sample. See [provenance and limitations](METHOD_AND_LIMITS.md).
 
-## The result
+## Results in the selected sample
 
 Three evidence distinctions materially change how this sample should be read:
 
-| Finding | Evidence | Consequence for an analyst |
+| Finding in this sample | Evidence | Consequence for an analyst |
 |---|---|---|
 | A displayed 9,142,093.8 XRP payment failed; the recorded balance change was only a 0.000020 XRP fee | X4; archived explorer JSON | Adding the requested amount to the three successful external payments would overstate this selected XRP total by **8.88%** |
 | A different ERC-20 contract emitted records using the same 19,668,851.77 amount and lookalike addresses | A5 compared with A2 | Amount matching and shortened-address matching can introduce unsupported edges into the graph |
-| Two shared Arkham entities had 25 common EVM addresses and one additional address in the larger set | Membership observation; O1 | The additional address has a direct 495.625 WETH receipt worth investigating; the transfer does not establish common ownership |
+| Two public Arkham label sets had 25 common EVM addresses and one additional address in the larger set | [Archived membership views](data/arkham-entity-membership.json); O1 | The additional address has a direct 495.625 WETH receipt worth investigating; the transfer does not establish common ownership |
 
 The 8.88% figure is a **counterfactual accounting error calculated on this selected sample**, not a measured error rate in a commercial tool. No claim is made that Arkham or another provider committed that error. Evidence IDs resolve in the [transaction register](EVIDENCE_REGISTER.md).
 
@@ -36,8 +36,9 @@ The Arbitrum entry is **19,668,851.773202 USDT0**, a small branch of the inciden
 flowchart LR
     B["Bitget-labeled Arbitrum source"] -->|"A1: 19,668,851.773202 USDT0"| C["Collector 0x770b…63Ee"]
     C -->|"A2: 19,668,851.77 USDT0"| S["Staging 0xe410…d946"]
-    S -->|"A3: 5,000,000 USDT0"| D["Swap execution"]
-    D -->|"A3: 1,829.128842525455829038 ETH"| S
+    S -->|"A3: 5,000,000 USDT0"| D["Aggregator and pool execution"]
+    D -->|"WETH unwrap: 1,829.128842525455829038 ETH"| R["Dutch Order Reactor"]
+    R -->|"A3: 1,829.128842525455829038 ETH"| S
     S -->|"A4: 500 ETH; deposit 4687600"| BR["Across source deposit"]
     BR -.->|"Requested destination; fill not matched here"| E["Ethereum recipient 0xe410…d946"]
 ```
@@ -50,7 +51,7 @@ On XRPL, a failed external payment sits between an internal source-account trans
 
 The selected records illustrate three distinct analytical tasks: establishing settlement, excluding unsupported graph edges and assessing candidate address relationships. The counterfactual accounting calculation quantifies the effect of one classification error within the sample. It does not measure the prevalence of such errors across the incident or across analytics providers.
 
-The XRP 90% amount-pattern hypothesis was first highlighted by **YFarmX**. We rechecked the arithmetic against selected explorer balances; that is replication, not a new discovery. The lookalike-record comparison and entity set comparison are observations made in this investigation, but no exhaustive prior-art search establishes that they were first reported here.
+The XRP 90% amount-pattern hypothesis was first highlighted by **YFarmX**. The arithmetic below replicates that observation against selected archived explorer balances. The lookalike-record and entity-set comparisons are observations in this sample; no first-discovery claim is made.
 
 ## Read or reproduce
 
@@ -66,6 +67,4 @@ The small offline checker needs Python 3.10+ and no dependencies:
 python scripts/reproduce.py
 ```
 
-It recomputes the sample arithmetic and checks the archived failed-payment metadata. **It does not query a node or independently authenticate the other explorer observations.** The evidence register links each observation to its source transaction.
-
-Related investigations: [Nomad Bridge](https://github.com/DenizErginGunduz/nomad-bridge-case-study) · [WLFI listing decision](https://github.com/DenizErginGunduz/wlfi-listing-case-study).
+It recomputes the sample arithmetic, checks archived XRPL result and balance metadata, and compares the archived Arkham label sets. It does not query a node or authenticate explorer responses. The evidence register links each observation to its source transaction.

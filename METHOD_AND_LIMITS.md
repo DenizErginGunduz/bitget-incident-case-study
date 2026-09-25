@@ -10,9 +10,9 @@ The transaction interval runs from **24 September 19:01:20 UTC to 25 September 0
 
 Public explorer pages and shared Arkham entity views were inspected on 25 September 2026. Transaction observations are recorded with chain, hash, UTC time, asset, amount, parties, result and analytical role in [the evidence register](EVIDENCE_REGISTER.md) and [structured dataset](data/transactions.json).
 
-The official notice and records A2, A5 and X4 were checked again on the same day. Two viewport screenshots and the visible XRPSCAN JSON representation of X4 were retained. The [capture manifest](data/capture-manifest.json) records their source URLs, file-save times and SHA-256 digests. File-save times are filesystem metadata, not trusted timestamp attestations; digests establish file identity, not source authenticity.
+The official notice and records A2, A3, A5, X1, X2, X4, X5 and X6 were checked again on the same day. The retained files include three Arbiscan/XRPSCAN transaction screenshots, five visible XRPSCAN Raw JSON views, full address lists for two public Arkham labels, and six overlapping Arkham viewports. The [capture manifest](data/capture-manifest.json) records source URLs, file-save times and SHA-256 digests. File-save times are filesystem metadata, not trusted timestamp attestations; digests establish file identity, not source authenticity.
 
-Most other observations are preserved as transcribed fields and source links. Exact per-page capture times and full historical Arkham membership pages were not retained. Current explorer labels and entity membership may differ from the recorded observations. No independent node query or cryptographic verification of provider responses was performed.
+Other observations are preserved as transcribed fields and source links. Exact per-page capture times for the earlier session were not retained. The Arkham files preserve a later 25 September view, not a verifiable 09:15 UTC snapshot. Current explorer labels and entity membership may differ from either observation. No independent node query or cryptographic verification of provider responses was performed.
 
 ## Evidence classification
 
@@ -20,7 +20,7 @@ Most other observations are preserved as transcribed fields and source links. Ex
 |---|---|---|
 | Official statement | What Bitget publicly reported | Not independent confirmation of loss, architecture or cause |
 | Explorer observation | Fields or events inspected on a public transaction page | Provider rendering and decoding; not independent node validation |
-| Archived explorer representation | X4's visible JSON, retained for offline checks | Includes provider-normalized fields; not an authenticated RPC response |
+| Archived explorer representation | Visible Raw JSON views of X1, X2, X4, X5 and X6, retained for offline checks | Includes provider-normalized fields; not authenticated RPC responses |
 | Third-party research | Public analyst totals, hypotheses and shared entities | Sources may reuse the same upstream evidence |
 | Derived result | Arithmetic or comparison applied to recorded observations | Conditional on input accuracy and the selected population |
 | Hypothesis | A proposed explanation or monitoring rule | Requires discriminating evidence or evaluation |
@@ -41,7 +41,7 @@ Amounts are stored as decimal strings. E2 retains only the precision observed in
 
 ## Reproduction and interpretation
 
-The [offline checker](scripts/reproduce.py) sums the three selected successful XRP receipts, calculates the counterfactual overstatement from adding X4's requested amount, checks selected time intervals and amount differences, and compares the noncanonical contract/address values. For X4 it also reads the archived metadata and checks that the sole affected account's balance decrease equals the recorded fee. Results are recorded in [VALIDATION.md](VALIDATION.md).
+The [offline checker](scripts/reproduce.py) checks hashes, parties, results and delivered amounts in the archived XRPL views before summing the three selected successful receipts. It calculates the counterfactual overstatement from adding X4's requested amount, checks X4's fee-only balance change, compares X5's ending balance with X6's starting balance, checks selected intervals and amount differences, and compares the noncanonical contract/address values. It also reproduces the archived Arkham set difference. Results are recorded in [VALIDATION.md](VALIDATION.md).
 
 The XRP `floor(balance) × 0.9` hypothesis is attributed to [YFarmX](https://yfarmx.com/bitget-postmortem-2026/). Reproducing two equalities does not establish automation or stale-balance causation. A treasury baseline, complete surrounding history and internal authorization records would be needed to distinguish competing explanations.
 

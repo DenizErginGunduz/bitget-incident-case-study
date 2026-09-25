@@ -1,0 +1,72 @@
+{
+  "Amount": "9306865800000",
+  "DeliverMax": "9306865800000",
+  "AuthAccounts": [],
+  "NFTokenOffers": [],
+  "Paths": [],
+  "CredentialIDs": [],
+  "SignerEntries": [],
+  "GenesisMints": [],
+  "Account": "rwTTsHVUDF8Ub2nzV2oAeWxfJzUvobXLEf",
+  "Destination": "rwNhefsz1UQEusxhCvHip3RANinWi4CTck",
+  "DestinationTag": 0,
+  "Fee": 20,
+  "Flags": 2147483648,
+  "LastLedgerSequence": 107212941,
+  "Sequence": 100027165,
+  "SigningPubKey": "02CB82EE4E5038B1AFF5507437680205AB48CBF4A24FAAE1A9CFD3C7D174770D59",
+  "TransactionType": "Payment",
+  "TxnSignature": "3045022100CD04B0F1FE54CC9F42B192CA927276577470D5D8936EB44F8A7058AF7E2371170220628E8E1D89E2C9B1A9DEB2A134B16E1F78E6E316C8B87F683F7AE011254D5A76",
+  "Memos": [],
+  "Signers": [],
+  "AcceptedCredentials": [],
+  "Hooks": [],
+  "hash": "41EFBB55219A89AB33F0E6EAFD3420EE8CBA7F03EC08F8BE546CE5DF5F26D42A",
+  "ledger_index": 107211943,
+  "ctid": "C663ECA700030000",
+  "validated": true,
+  "meta": {
+    "delivered_amount": "9306865800000",
+    "AffectedNodes": [
+      {
+        "ModifiedNode": {
+          "FinalFields": {
+            "Account": "rwNhefsz1UQEusxhCvHip3RANinWi4CTck",
+            "Balance": "102976680091965",
+            "Flags": 0,
+            "OwnerCount": 0,
+            "Sequence": 107209789
+          },
+          "LedgerEntryType": "AccountRoot",
+          "LedgerIndex": "4A6FA5DBF943B277185572AEB18DE3AED873A036AF53803986B8DF21AE2A06E9",
+          "PreviousFields": {
+            "Balance": "93669814291965"
+          },
+          "PreviousTxnID": "B8045DEC4C5169243963F07A90D67D5B3959BEBD2C0592D004CCA3BD3BA488BB",
+          "PreviousTxnLgrSeq": 107210024
+        }
+      },
+      {
+        "ModifiedNode": {
+          "FinalFields": {
+            "Account": "rwTTsHVUDF8Ub2nzV2oAeWxfJzUvobXLEf",
+            "Balance": "1034096244661",
+            "Flags": 0,
+            "OwnerCount": 0,
+            "Sequence": 100027166
+          },
+          "LedgerEntryType": "AccountRoot",
+          "LedgerIndex": "728D178C210749B46513E27A199D8332004572ADA2BA6BA538E06C94D29E8591",
+          "PreviousFields": {
+            "Balance": "10340962044681",
+            "Sequence": 100027165
+          },
+          "PreviousTxnID": "46D44150E90A82B310138B75A6381BEB5B67F2D3D463E505D21350FBA2EFBD48",
+          "PreviousTxnLgrSeq": 107211335
+        }
+      }
+    ],
+    "TransactionIndex": 3,
+    "TransactionResult": "tesSUCCESS"
+  }
+}

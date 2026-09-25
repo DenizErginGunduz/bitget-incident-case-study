@@ -55,7 +55,17 @@
       "received_asset": "ETH",
       "received_amount": "1829.128842525455829038",
       "received_by": "0xe410a2E5710Ee787bcaa63f52A3943ff71F0d946",
-      "envelope_sender": "0x5F8D74fCFE0B42a3a4d5646c0f5d9124059817a2"
+      "envelope_sender": "0x5F8D74fCFE0B42a3a4d5646c0f5d9124059817a2",
+      "selected_usdt0_path": [
+        "0xe410a2E5710Ee787bcaa63f52A3943ff71F0d946 -> 0xD767473b74397Fa9c1e7A2BdB210020c648A6836: 5000000 USDT0",
+        "0xD767473b74397Fa9c1e7A2BdB210020c648A6836 -> 0x111116053F09d34a7Eae8102887004445176CA11: 5000000 USDT0"
+      ],
+      "selected_native_eth_path": [
+        "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1 -> 0xD767473b74397Fa9c1e7A2BdB210020c648A6836: 1829.128842525455829038 ETH",
+        "0xD767473b74397Fa9c1e7A2BdB210020c648A6836 -> 0xB274d5F4b833b61B340b654d600A864fB604a87c: 1829.128842525455829038 ETH",
+        "0xB274d5F4b833b61B340b654d600A864fB604a87c -> 0xe410a2E5710Ee787bcaa63f52A3943ff71F0d946: 1829.128842525455829038 ETH"
+      ],
+      "execution_path_scope": "Selected visible token and internal ETH legs; not a reconciliation of every pool event"
     },
     {
       "id": "A4",
@@ -112,7 +122,8 @@
       "url": "https://xrpscan.com/tx/9926E440BC17F3EE7ACB91DB09A44B9781876B19C6E2D046E5E225F758FB25F4",
       "verification": "explorer_observed",
       "observation_date": "2026-09-25",
-      "delivered_amount": "2248871.536237"
+      "delivered_amount": "2248871.536237",
+      "archived_explorer_json": "data/explorer/xrpl-X1.json"
     },
     {
       "id": "X2",
@@ -129,7 +140,8 @@
       "verification": "explorer_observed",
       "observation_date": "2026-09-25",
       "delivered_amount": "91420942.755708",
-      "source_balance_after": "10157882.528393"
+      "source_balance_after": "10157882.528393",
+      "archived_explorer_json": "data/explorer/xrpl-X2.json"
     },
     {
       "id": "X3",
@@ -182,7 +194,9 @@
       "url": "https://xrpscan.com/tx/5DBD1295C3502AFD3B283E0135065B5E41C7FDE73ACE45A6AE94AAC814992308",
       "verification": "explorer_observed",
       "observation_date": "2026-09-25",
-      "delivered_amount": "2183079.516298"
+      "delivered_amount": "2183079.516298",
+      "destination_balance_after": "10340962.044671",
+      "archived_explorer_json": "data/explorer/xrpl-X5.json"
     },
     {
       "id": "X6",
@@ -199,7 +213,8 @@
       "verification": "explorer_observed",
       "observation_date": "2026-09-25",
       "delivered_amount": "9306865.8",
-      "source_balance_before": "10340962.044681"
+      "source_balance_before": "10340962.044681",
+      "archived_explorer_json": "data/explorer/xrpl-X6.json"
     },
     {
       "id": "O1",
