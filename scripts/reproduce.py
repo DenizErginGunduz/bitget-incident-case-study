@@ -16,12 +16,17 @@ def require(condition, message):
 
 
 def account_balances(raw, address):
+    node = account_node(raw, address)
+    previous = node.get('PreviousFields', {}).get('Balance')
+    return (D(previous) if previous is not None else None, D(node['FinalFields']['Balance']))
+
+
+def account_node(raw, address):
     for wrapper in raw['meta']['AffectedNodes']:
         node = next(iter(wrapper.values()))
         final = node.get('FinalFields', {})
         if node.get('LedgerEntryType') == 'AccountRoot' and final.get('Account') == address:
-            previous = node.get('PreviousFields', {}).get('Balance')
-            return (D(previous) if previous is not None else None, D(final['Balance']))
+            return node
     raise ValueError(f'No AccountRoot balance change for {address}')
 
 
@@ -29,11 +34,11 @@ def main():
     data = json.loads((ROOT / 'data/transactions.json').read_text(encoding='utf-8'))
     records = data['records']
     rows = {r['id']: r for r in records}
-    require(len(rows) == len(records) == 13, 'Unexpected or duplicate record IDs')
-    require(len({(r['chain'], r['tx_hash']) for r in records}) == 13, 'Duplicate transaction')
+    require(len(rows) == len(records) == 16, 'Unexpected or duplicate record IDs')
+    require(len({(r['chain'], r['tx_hash']) for r in records}) == 16, 'Duplicate transaction')
 
     archived = {}
-    for id in ('X1', 'X2', 'X4', 'X5', 'X6'):
+    for id in ('X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'D1', 'D2', 'D3'):
         row = rows[id]
         raw = json.loads((ROOT / row['archived_explorer_json']).read_text(encoding='utf-8'))
         require(raw['hash'] == row['tx_hash'], f'{id}: hash mismatch')
@@ -68,8 +73,29 @@ def main():
     require(x5_after / DROPS == D(rows['X5']['destination_balance_after']), 'X5 ending balance mismatch')
     x6_before, _ = account_balances(archived['X6'], rows['X6']['source'])
     require(x6_before / DROPS == D(rows['X6']['source_balance_before']), 'X6 opening balance mismatch')
-    gap_drops = x6_before - x5_after
-    require(gap_drops == 10, 'Review intervening X5-to-X6 balance change')
+    sequence = ('X2', 'D1', 'X3', 'D2', 'X4', 'X5', 'D3', 'X6')
+    source2 = rows['X2']['source']
+    for previous_id, current_id in zip(sequence, sequence[1:]):
+        previous_raw, current_raw = archived[previous_id], archived[current_id]
+        _, previous_balance = account_balances(previous_raw, source2)
+        current_balance, _ = account_balances(current_raw, source2)
+        node = account_node(current_raw, source2)
+        require(previous_balance == current_balance, f'{current_id}: account balance discontinuity')
+        require(node['PreviousTxnID'] == previous_raw['hash'], f'{current_id}: predecessor mismatch')
+        require(node['PreviousTxnLgrSeq'] == previous_raw['ledger_index'], f'{current_id}: predecessor ledger mismatch')
+
+    for id in sequence:
+        raw = archived[id]
+        opening, closing = account_balances(raw, source2)
+        delivered_drops = D(0) if id == 'X4' else D(raw['meta']['delivered_amount'])
+        expected_change = -delivered_drops - D(raw['Fee']) if raw['Account'] == source2 else delivered_drops
+        require(closing - opening == expected_change, f'{id}: balance change not explained by delivery and fee')
+        if id.startswith('D'):
+            require(delivered_drops == 10, f'{id}: dust amount changed')
+    _, closing_balance = account_balances(archived['X6'], source2)
+    require(closing_balance / DROPS == D('1034096.244661'), 'Source 2 closing balance mismatch')
+    signing_keys = {archived[id]['SigningPubKey'] for id in ('X2', 'X3', 'X4', 'X6')}
+    require(len(signing_keys) == 1, 'Source 2 signing-key observation changed')
 
     def seconds(a, b):
         parse = lambda id: datetime.fromisoformat(rows[id]['timestamp_utc'].replace('Z', '+00:00'))
@@ -100,7 +126,10 @@ def main():
     print(f'Failed requested amount excluded: {requested} XRP')
     print(f'If wrongly added: {total + requested} XRP; overstatement {requested / total * 100:.4f}%')
     print(f'X4 archived balance decrease: {delta_drops} drops; matches fee only')
-    print(f'X5 ending to X6 opening balance difference: +{gap_drops} drops; cause unresolved')
+    print('Source 2 continuity: 8 AccountRoot updates; 7 balance and predecessor links matched.')
+    print('D1/D2/D3: 10 drops each; all interval balance changes reconcile with delivery and fees.')
+    print(f'Source 2 balance after X6: {closing_balance / DROPS} XRP')
+    print('X2/X3/X4/X6 share a SigningPubKey; authorization and compromise mechanism are not established.')
     print(f'A1 to A2: {seconds("A1", "A2")} seconds; amount difference {D(rows["A1"]["amount"]) - D(rows["A2"]["amount"])} USDT0')
     print(f'X4 to X5: {seconds("X4", "X5")} seconds; X5 to X6: {seconds("X5", "X6")} seconds')
     print('Two floor(balance) x 0.9 equalities reproduced; this does not establish causation.')

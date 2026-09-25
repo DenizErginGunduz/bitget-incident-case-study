@@ -1,24 +1,27 @@
 # Evidence register
 
-Thirteen selected transactions. Amounts are in asset units, not current USD. All observations originate from public explorer pages inspected on 25 September 2026. The structured dataset is a manual transcription; visible XRPSCAN Raw JSON representations are retained for X1, X2, X4, X5 and X6.
+Sixteen selected transactions, ordered by UTC time. Amounts are in asset units, not current USD. All observations originate from public explorer pages inspected on 25 September 2026. The structured dataset is a manual transcription; visible XRPSCAN Raw JSON representations are retained for all nine XRP records (X1–X6 and D1–D3).
 
 | ID | UTC date/time | Network | Role | Displayed amount / asset | Result | Source |
 |---|---|---|---|---:|---|---|
 | A1 | 2026-09-24T19:01:20Z | Arbitrum | selected initial receipt | 19668851.773202 USDT0 | success | [Transaction](https://arbiscan.io/tx/0xd032320ad8a3cddc61ec0db5e6e26a6dcf813243a77b7edc5a65451ade0b84e3) |
-| A2 | 2026-09-24T19:34:14Z | Arbitrum | onward transfer | 19668851.77 USDT0 | success | [Transaction](https://arbiscan.io/tx/0xea53170b1468c633bdff136c234efd21b543da3ab4abddb3fcf3bbcbc5175e29) |
-| A3 | 2026-09-24T19:36:44Z | Arbitrum | selected swap | 5000000 USDT0 | success | [Transaction](https://arbiscan.io/tx/0x6ceac9f09788e041f78c3f96941a0140cfcff6e5febe73b00e7d6cffabfa4c37) |
-| A4 | 2026-09-24T19:49:22Z | Arbitrum | source bridge deposit | 500 ETH | success | [Transaction](https://arbiscan.io/tx/0x7725e4894f379fe96dcbbf52a2f2717c802f2f300314690547a4405801146a20) |
-| A5 | 2026-09-24T19:48:37Z | Arbitrum | excluded noncanonical records | 19668851.77 noncanonical ERC20 | success | [Transaction](https://arbiscan.io/tx/0x07bb486af245d53f8823a24c586f97500de6c77d2a3490a2338fdfb35651418d) |
 | X1 | 2026-09-24T19:01:32Z | XRPL | selected initial receipt | 2248871.536237 XRP | success | [Transaction](https://xrpscan.com/tx/9926E440BC17F3EE7ACB91DB09A44B9781876B19C6E2D046E5E225F758FB25F4) |
 | X2 | 2026-09-24T19:16:20Z | XRPL | selected initial receipt | 91420942.755708 XRP | success | [Transaction](https://xrpscan.com/tx/8DF2ECF67268117A34B89BE9B452D3E888A22CBF03E5C196AD72D8B414A84195) |
+| D1 | 2026-09-24T19:16:31Z | XRPL | small incoming payment | 0.000010 XRP | success | [Transaction](https://xrpscan.com/tx/336ACCE3B9BBF43A3AC514D43C5D9052D1A7A42893723EE17DD9043FFFECFD90) |
 | X3 | 2026-09-24T19:28:02Z | XRPL | source account internal | 2000000 XRP | success | [Transaction](https://xrpscan.com/tx/98D32498FC3B15849D27DC7321A1A7C7732647FAD0FA67FACDBB0E3331F4923A) |
+| D2 | 2026-09-24T19:28:31Z | XRPL | small incoming payment | 0.000010 XRP | success | [Transaction](https://xrpscan.com/tx/5A5D3F930E78027C40627D317EF88E5D0D70541E1ACEF83D811AB3A9A0E52AC5) |
+| A2 | 2026-09-24T19:34:14Z | Arbitrum | onward transfer | 19668851.77 USDT0 | success | [Transaction](https://arbiscan.io/tx/0xea53170b1468c633bdff136c234efd21b543da3ab4abddb3fcf3bbcbc5175e29) |
+| A3 | 2026-09-24T19:36:44Z | Arbitrum | selected swap | 5000000 USDT0 | success | [Transaction](https://arbiscan.io/tx/0x6ceac9f09788e041f78c3f96941a0140cfcff6e5febe73b00e7d6cffabfa4c37) |
+| A5 | 2026-09-24T19:48:37Z | Arbitrum | excluded noncanonical records | 19668851.77 noncanonical ERC20 | success | [Transaction](https://arbiscan.io/tx/0x07bb486af245d53f8823a24c586f97500de6c77d2a3490a2338fdfb35651418d) |
+| A4 | 2026-09-24T19:49:22Z | Arbitrum | source bridge deposit | 500 ETH | success | [Transaction](https://arbiscan.io/tx/0x7725e4894f379fe96dcbbf52a2f2717c802f2f300314690547a4405801146a20) |
 | X4 | 2026-09-24T20:28:20Z | XRPL | failed external attempt | 9142093.8 XRP | tecUNFUNDED_PAYMENT | [Transaction](https://xrpscan.com/tx/76474A81759D12B7D98B01C77EB1F5B5E44E345E94BA842482F06010B31EA32C) |
 | X5 | 2026-09-24T20:40:02Z | XRPL | source account internal | 2183079.516298 XRP | success | [Transaction](https://xrpscan.com/tx/5DBD1295C3502AFD3B283E0135065B5E41C7FDE73ACE45A6AE94AAC814992308) |
+| D3 | 2026-09-24T20:40:32Z | XRPL | small incoming payment | 0.000010 XRP | success | [Transaction](https://xrpscan.com/tx/46D44150E90A82B310138B75A6381BEB5B67F2D3D463E505D21350FBA2EFBD48) |
 | X6 | 2026-09-24T21:19:21Z | XRPL | selected initial receipt | 9306865.8 XRP | success | [Transaction](https://xrpscan.com/tx/41EFBB55219A89AB33F0E6EAFD3420EE8CBA7F03EC08F8BE546CE5DF5F26D42A) |
 | O1 | 2026-09-25T02:49:23Z | Optimism | candidate cluster connection | 495.625 WETH | success | [Transaction](https://optimistic.etherscan.io/tx/0x08ebefeeb9630b5e8948f1e208248865bc5e93bfc0597429a8437bde73d3b125) |
 | E2 | 2026-09-25T02:55:23Z | Ethereum | observed mint source unmatched | 1299812.6016 USDC | success | [Transaction](https://etherscan.io/tx/0xe561ab5186cd89309d963f332c048f9eab89028d74d4fedfaf0c78611bd1d9f5) |
 
-**Amount semantics:** X4 delivered zero XRP. A5 is excluded from the canonical-USDT0 graph. A3's ETH receipt follows internal contract transfers; the recorded path is not a full execution reconciliation. A4 proves only a source deposit. E2 is displayed to limited precision and is not linked here to a source burn. No downstream row is added to the incident loss estimate.
+**Amount semantics:** X4 delivered zero XRP. D1–D3 are small receipts by source 2, not incident outflows. A5 is excluded from the canonical-USDT0 graph. A3's ETH receipt follows internal contract transfers; the recorded path is not a full execution reconciliation. A4 proves only a source deposit. E2 is displayed to limited precision and is not linked here to a source burn. No downstream row is added to the incident loss estimate.
 
 ## Address roles and attribution
 
@@ -46,6 +49,7 @@ Observed during a 25 September morning session at approximately 09:15 UTC, and i
 | Claim | Status | What could change the conclusion? |
 |---|---|---|
 | X4 transferred no XRP to the destination | Explorer metadata supported | Conflicting authoritative ledger metadata |
+| Source-2 interval balances reconcile through D1–D3 | Archived balance and predecessor metadata supported | Conflicting authoritative ledger metadata |
 | A5 is not a canonical-USDT0 movement | Contract mismatch observed | Incorrect transcription of chain or contract |
 | O1 links two addresses by value transfer | Explorer observed | Conflicting receipt or asset identity |
 | Those addresses share control | Not established | Independent control evidence, accounting for service intermediaries |

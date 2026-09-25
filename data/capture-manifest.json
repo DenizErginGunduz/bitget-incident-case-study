@@ -65,6 +65,24 @@
       "sha256": "ce88fd5e4990a37abac7ed70f493cf519aa5dd7bc1e1910921d3bd7aadd11eaa"
     },
     {
+      "path": "data/explorer/xrpl-D1.json",
+      "source_url": "https://xrpscan.com/tx/336ACCE3B9BBF43A3AC514D43C5D9052D1A7A42893723EE17DD9043FFFECFD90",
+      "saved_at_utc": "2026-09-25T18:44:41.258164+00:00",
+      "sha256": "987f0905ff6ca8eaf656d39b164eeb78326bd128e6d778d94a355a55634b02b6"
+    },
+    {
+      "path": "data/explorer/xrpl-D2.json",
+      "source_url": "https://xrpscan.com/tx/5A5D3F930E78027C40627D317EF88E5D0D70541E1ACEF83D811AB3A9A0E52AC5",
+      "saved_at_utc": "2026-09-25T18:44:41.277571+00:00",
+      "sha256": "8e7c45df6889178d2e0d07eae0e758d523f9395196c3d91db4b08622bcbe09af"
+    },
+    {
+      "path": "data/explorer/xrpl-D3.json",
+      "source_url": "https://xrpscan.com/tx/46D44150E90A82B310138B75A6381BEB5B67F2D3D463E505D21350FBA2EFBD48",
+      "saved_at_utc": "2026-09-25T18:44:41.295122+00:00",
+      "sha256": "443edd5593e712540b1e3def0d2163b7c82f71d2d7cfd8bdc249deb26a226031"
+    },
+    {
       "path": "data/explorer/xrpl-X1.json",
       "source_url": "https://xrpscan.com/tx/9926E440BC17F3EE7ACB91DB09A44B9781876B19C6E2D046E5E225F758FB25F4",
       "saved_at_utc": "2026-09-25T12:25:48.225741+00:00",
@@ -75,6 +93,12 @@
       "source_url": "https://xrpscan.com/tx/8DF2ECF67268117A34B89BE9B452D3E888A22CBF03E5C196AD72D8B414A84195",
       "saved_at_utc": "2026-09-25T12:26:03.138866+00:00",
       "sha256": "5136eb3f3d6111d335de0137316ba035cc71d8c5beec837f326709f86b7e3c06"
+    },
+    {
+      "path": "data/explorer/xrpl-X3.json",
+      "source_url": "https://xrpscan.com/tx/98D32498FC3B15849D27DC7321A1A7C7732647FAD0FA67FACDBB0E3331F4923A",
+      "saved_at_utc": "2026-09-25T18:44:41.237293+00:00",
+      "sha256": "0ee2bc74d5e28921e156ed661a3971750e146f74985afadc1d3cf91a73891112"
     },
     {
       "path": "data/explorer/xrpl-X5.json",

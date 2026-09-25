@@ -43,6 +43,8 @@ The following full addresses come from the explorer's visible transfer links:
 
 *Two viewports from A5 show the selected lookalike rows; they are excerpts from 74 displayed token records. The contract address and full transaction identity are visible on the source page.*
 
+These are two separate event rows. The first names the **actual collector → lookalike staging address**; the second names the **lookalike collector → actual staging address**. Both display 19,668,851.77 units of the noncanonical contract. Neither row has two lookalike endpoints. A `from` address named in a token event also does not establish that the named account signed or authorized the transaction.
+
 **Why:** A transfer event emitted by another contract is not evidence that canonical USDT0 moved. Even a genuine event log can describe an economically irrelevant asset. Here the appropriate outcome is to exclude these rows from the USDT0 flow graph and preserve them separately as data-quality evidence. The sender's phishing label is an explorer assertion; the contract/address mismatch is the directly inspectable distinction.
 
 **Limit:** This is consistent with address-history contamination. We do not establish its author's intent, ownership or connection to the incident perpetrators. We have not shown that any analytics product misclassified the rows.
@@ -75,7 +77,7 @@ The archived explorer representation records a requested 9,142,093.8 XRP but a b
 
 X1, X2 and X6 are the selected successful external payments. X3 and X5 move XRP between two Bitget-labeled source accounts. X4 belongs in the behavioral timeline but contributes zero delivered XRP to the external-receipt total. The script reports the overcount that would result from ignoring this distinction.
 
-The retained XRPSCAN Raw JSON views for X1, X2 and X6 record `tesSUCCESS` and `meta.delivered_amount`. They are explorer-rendered metadata, not independent node responses. X5's retained view records the refill and its destination balance.
+The retained XRPSCAN Raw JSON views cover all nine XRP records in the register, including X3 and the three small incoming payments D1–D3. The receipt selections and X4's failed-payment classification follow YFarmX; the archived metadata allows those classifications and the derived arithmetic to be checked offline.
 
 ## 7. Ask what the refill means without claiming its cause
 
@@ -88,15 +90,32 @@ The retained XRPSCAN Raw JSON views for X1, X2 and X6 record `tesSUCCESS` and `m
 
 The refill precedes the successful payment by 39 minutes 19 seconds. Temporal order alone does not establish that the attacker requested the refill or that a specific control failed.
 
-X5 records the source account at **10,340,962.044671 XRP** after the refill; X6 records **10,340,962.044681 XRP** before the external payment. The 10-drop difference is not explained by these selected records, so this is not a complete account timeline. The difference does not change the integer floor used in the 90% arithmetic check.
+### Reconcile source 2 down to the drop
 
-The [YFarmX hypothesis](https://yfarmx.com/bitget-postmortem-2026/) compares the requested amounts with `floor(balance in XRP) × 0.9`. The arithmetic matches two selected balances. That is a lead for testing stale-balance or repeated-amount logic, not proof of automation. Ordinary treasury operations are a plausible competing explanation requiring a baseline and internal records.
+For `rwTTsHVUDF8Ub2nzV2oAeWxfJzUvobXLEf`, inspect each `AccountRoot` balance change and its `PreviousTxnID` and `PreviousTxnLgrSeq`. These fields identify the previous modification of that ledger object; see the [XRPL AccountRoot reference](https://xrpl.org/docs/references/protocol/ledger-data/ledger-entry-types/accountroot). The retained metadata links the following eight updates. Each opening balance equals the preceding closing balance.
+
+| UTC time | Record | Change in source 2 balance (XRP, including its fees) | Closing balance (XRP) |
+|---|---|---:|---:|
+| 19:16:20 | X2 external payment | −91,420,942.755728 | 10,157,882.528393 |
+| 19:16:31 | D1 small incoming payment | +0.000010 | 10,157,882.528403 |
+| 19:28:02 | X3 source-account transfer | −2,000,000.000020 | 8,157,882.528383 |
+| 19:28:31 | D2 small incoming payment | +0.000010 | 8,157,882.528393 |
+| 20:28:20 | X4 failed attempt; fee only | −0.000020 | 8,157,882.528373 |
+| 20:40:02 | X5 refill | +2,183,079.516298 | 10,340,962.044671 |
+| 20:40:32 | D3 small incoming payment | +0.000010 | 10,340,962.044681 |
+| 21:19:21 | X6 external payment | −9,306,865.800020 | 1,034,096.244661 |
+
+D1, D2 and D3 arrived 11, 29 and 30 seconds after X2, X3 and X5 respectively. Their sender addresses are retained in the dataset. These small payments explain the balance differences; their timing does not establish who sent them or why. This is continuity of the archived source-2 AccountRoot updates in this interval, not a reconstruction of source 1 or every associated ledger object.
+
+The [YFarmX hypothesis](https://yfarmx.com/bitget-postmortem-2026/) compares X4's requested amount with `floor(X2 closing balance in XRP) × 0.9`, and X6's amount with `floor(X6 opening balance in XRP) × 0.9`. Both equalities hold. The small payments do not change those integer floors. That supports testing stale-balance or repeated-amount logic; it does not establish automation or the authorization path.
+
+X2, X3, X4 and X6 also contain the same `SigningPubKey` in the retained representations. This is a public signing-key observation, not evidence identifying the human operator or the compromise mechanism. A normal treasury baseline, signing-service records and internal approvals are needed to distinguish routine operations from misuse.
 
 ## 8. Audit a cluster before extending it
 
 The two public Arkham entity membership views recorded in the register contained 26 and 25 EVM addresses, with 25 in common. Their difference was `0x2b03476bC4070e3019B3D5f4EC46edC27284ecd8`. The [archived address lists](data/arkham-entity-membership.json) and overlapping [viewport captures](assets/README.md) preserve the later 25 September observation; they do not retrospectively timestamp the earlier morning observation.
 
-Open **O1**: a shared member sends that address 495.625 WETH on Optimism. This supports a transfer connection and follow-up review. It does not by itself prove common control, criminal intent or a real-world identity. An exchange, router, relayer or independent counterparty can receive value too. The shared entities may also depend on the same original researcher.
+Open **O1**: a shared member sends that address 495.625 WETH on Optimism. This supports a transfer connection and follow-up review. It does not by itself prove common control, criminal intent or a real-world identity. An exchange, router, relayer or independent counterparty can receive value too. The shared entities may depend on the same original researcher, and the extra membership may itself have been inferred from O1. Agreement between that label and O1 is therefore not independent corroboration or a newly discovered attacker wallet.
 
 **Why:** A cluster is a hypothesis with a provenance trail. Store the reason for each candidate edge and its confidence. Avoid promoting a shared user label into an established fact.
 

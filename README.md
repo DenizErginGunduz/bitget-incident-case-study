@@ -1,4 +1,4 @@
-# Bitget case note | Testing fund flow in a selected transaction sample
+# Bitget incident: settlement, asset identity and address attribution
 
 **An early, bounded on-chain investigation of the 24 September 2026 incident, with a worked guide for transaction-monitoring analysts.**
 
@@ -10,7 +10,7 @@ Bitget reported approximately **$351.6 million** affected by unauthorized transf
 
 ## Results in the selected sample
 
-Three evidence distinctions materially change how this sample should be read:
+The selected records support the following conclusions:
 
 | Finding in this sample | Evidence | Consequence for an analyst |
 |---|---|---|
@@ -28,7 +28,15 @@ The 8.88% figure is a **counterfactual accounting error calculated on this selec
 
 The Arbitrum entry is **19,668,851.773202 USDT0**, a small branch of the incident. Three successful XRP receipts in the sample total **102,976,680.091945 XRP**. Neither figure should be confused with the complete incident loss.
 
-[YFarmX's reconstruction](https://yfarmx.com/bitget-postmortem-2026/) reported $192,611,911.60 across 16 EVM receipts and $158,051,512.55 for three XRP payments, totaling $350,663,424.15 at its stated 24 September 21:39:35 UTC reference prices. The complete EVM basket and valuation were not independently reproduced here. Its provisional 0.84 ETH funding classification also requires review. A separate [Lookonchain asset table](https://x.com/lookonchain/status/2103290466116763936) includes TRX and produces a higher total; valuation and population differences remain unresolved. These estimates cannot be treated as mutual confirmation. [YFarmX evidence index](https://yfarmx.com/media/2026/09/bitget-postmortem-evidence.json).
+| Branch | Coverage in this study | Boundary |
+|---|---|---|
+| Initial Arbitrum receipt | A1: 19,668,851.773202 USDT0 | One EVM entry, not the full EVM outflow population |
+| Initial XRP receipts | X1, X2 and X6: 102,976,680.091945 XRP | Matches the three receipts identified by YFarmX; completeness was not established through an independent account-history search |
+| Arbitrum disposition | A2 onward transfer; A3 converts 5,000,000 of the 19,668,851.77 USDT0 received | The other 14,668,851.77 USDT0 is outside the traced conversion slice, not asserted to remain held |
+| Cross-chain observations | A4 source deposit; E2 destination mint | Neither is presented as a matched source-to-destination bridge path |
+| XRP source-account continuity | Eight AccountRoot updates for source 2, from X2 through X6 | Reconciles this account and interval, not the full history of both source wallets |
+
+[YFarmX's reconstruction](https://yfarmx.com/bitget-postmortem-2026/) reported $192,611,911.60 across 16 EVM receipts and $158,051,512.55 for three XRP payments, totaling $350,663,424.15 at its stated 24 September 21:39:35 UTC reference prices. These are attributed context figures; this study does not reproduce that EVM inventory or USD valuation. The difference from Bitget's estimate remains outside the reconciliation performed here. [YFarmX evidence index](https://yfarmx.com/media/2026/09/bitget-postmortem-evidence.json).
 
 ## Selected paths
 
@@ -51,12 +59,12 @@ On XRPL, a failed external payment sits between an internal source-account trans
 
 The selected records illustrate three distinct analytical tasks: establishing settlement, excluding unsupported graph edges and assessing candidate address relationships. The counterfactual accounting calculation quantifies the effect of one classification error within the sample. It does not measure the prevalence of such errors across the incident or across analytics providers.
 
-The XRP 90% amount-pattern hypothesis was first highlighted by **YFarmX**. The arithmetic below replicates that observation against selected archived explorer balances. The lookalike-record and entity-set comparisons are observations in this sample; no first-discovery claim is made.
+The three XRP receipt selections, the classification of X4 as a failed payment, and the 90% amount-pattern hypothesis follow **[YFarmX](https://yfarmx.com/bitget-postmortem-2026/)**. This study checks those observations against archived explorer metadata and makes the accounting consequence reproducible. It also reconciles the intervening small payments and documents the token-contract and label-set comparisons. Its contribution is an auditable worked investigation; no first-discovery or exploit-discovery claim is made.
 
 ## Read or reproduce
 
 - [Worked investigation: what to inspect, why, and where to stop](WALKTHROUGH.md)
-- [Evidence register: 13 selected transactions and their roles](EVIDENCE_REGISTER.md)
+- [Evidence register: 16 selected transactions and their roles](EVIDENCE_REGISTER.md)
 - [Method, evidence boundaries and unresolved questions](METHOD_AND_LIMITS.md)
 - [Monitoring implications and a falsifiable evaluation plan](MONITORING.md)
 - [Reproduction results](VALIDATION.md)

@@ -9,7 +9,9 @@ The case supports concrete investigation requirements. It does not establish det
 | Token history contains repeated amounts and lookalike addresses | Full addresses, chain, event-emitting contract and transaction result | Prevents unqualified rows from becoming canonical-asset edges | A suspicious row alone does not identify its author or motive |
 | Public entities disagree about an address | Dated set membership, edge evidence and service-counterparty context | Makes analyst grouping decisions reviewable | Shared labels may copy each other; receipt does not imply common control |
 
-## A proposed evaluation, not a claimed backtest
+## Evaluation design
+
+In this sample, X4 fails at 20:28:20 UTC, X5 refills the account 11 minutes 42 seconds later, and X6 succeeds a further 39 minutes 19 seconds later. Those intervals define a sequence worth reviewing; they do not prove that an alert or intervention would have been possible.
 
 For an exchange transaction-monitoring team, compare a large-successful-outflow baseline with a rule that also preserves failed attempts and correlates subsequent refills. Freeze a review window, thresholds and a normal-period sample **before** evaluating outcomes. No calibrated threshold is supplied by this one incident.
 

@@ -1,0 +1,72 @@
+{
+  "Amount": "2000000000000",
+  "DeliverMax": "2000000000000",
+  "AuthAccounts": [],
+  "NFTokenOffers": [],
+  "Paths": [],
+  "CredentialIDs": [],
+  "SignerEntries": [],
+  "GenesisMints": [],
+  "Account": "rwTTsHVUDF8Ub2nzV2oAeWxfJzUvobXLEf",
+  "Destination": "rGDreBvnHrX1get7na3J4oowN19ny4GzFn",
+  "DestinationTag": 0,
+  "Fee": 20,
+  "Flags": 2147483648,
+  "LastLedgerSequence": 107211202,
+  "Sequence": 100027163,
+  "SigningPubKey": "02CB82EE4E5038B1AFF5507437680205AB48CBF4A24FAAE1A9CFD3C7D174770D59",
+  "TransactionType": "Payment",
+  "TxnSignature": "3045022100C6EA0A646C37FE2034A9566889ECA1F4F4D29B98F6B8B4B7C09054AD84D3A6FF022019CE5E914034D01E361728DDD7021E5FC96467703BA0F1E8FADBACA787B91C87",
+  "Memos": [],
+  "Signers": [],
+  "AcceptedCredentials": [],
+  "Hooks": [],
+  "hash": "98D32498FC3B15849D27DC7321A1A7C7732647FAD0FA67FACDBB0E3331F4923A",
+  "ledger_index": 107210204,
+  "ctid": "C663E5DC00380000",
+  "validated": true,
+  "meta": {
+    "delivered_amount": "2000000000000",
+    "AffectedNodes": [
+      {
+        "ModifiedNode": {
+          "FinalFields": {
+            "Account": "rwTTsHVUDF8Ub2nzV2oAeWxfJzUvobXLEf",
+            "Balance": "8157882528383",
+            "Flags": 0,
+            "OwnerCount": 0,
+            "Sequence": 100027164
+          },
+          "LedgerEntryType": "AccountRoot",
+          "LedgerIndex": "728D178C210749B46513E27A199D8332004572ADA2BA6BA538E06C94D29E8591",
+          "PreviousFields": {
+            "Balance": "10157882528403",
+            "Sequence": 100027163
+          },
+          "PreviousTxnID": "336ACCE3B9BBF43A3AC514D43C5D9052D1A7A42893723EE17DD9043FFFECFD90",
+          "PreviousTxnLgrSeq": 107210024
+        }
+      },
+      {
+        "ModifiedNode": {
+          "FinalFields": {
+            "Account": "rGDreBvnHrX1get7na3J4oowN19ny4GzFn",
+            "Balance": "2176104413790",
+            "Flags": 131072,
+            "OwnerCount": 2,
+            "Sequence": 1645552
+          },
+          "LedgerEntryType": "AccountRoot",
+          "LedgerIndex": "8719BD164C9F79A760E19FB64691885E63CC595032E559971F89C1E22EAEC220",
+          "PreviousFields": {
+            "Balance": "176104413790"
+          },
+          "PreviousTxnID": "C01AA59C478F64A99D61AE02018216814D2D3414A39A1930A0BF3B6604057CAE",
+          "PreviousTxnLgrSeq": 107210136
+        }
+      }
+    ],
+    "TransactionIndex": 56,
+    "TransactionResult": "tesSUCCESS"
+  }
+}

@@ -2,7 +2,7 @@
 
 ## Scope and selection
 
-This study examines 13 selected transactions associated with the 24 September 2026 Bitget incident. The sample covers an Arbitrum transfer and conversion path, an XRPL payment sequence, and an Optimism/Ethereum address relationship. It is a purposive sample assembled from public research leads, not a complete or statistically representative incident population.
+This study examines 16 selected transactions associated with the 24 September 2026 Bitget incident. The sample covers an Arbitrum transfer and conversion path, an XRPL payment sequence, and an Optimism/Ethereum address relationship. It is a purposive sample assembled from public research leads, not a complete or statistically representative incident population.
 
 The transaction interval runs from **24 September 19:01:20 UTC to 25 September 02:55:23 UTC**. This is a sample boundary, not the start or end of the incident. Bitget's reported loss and third-party aggregate estimates provide context; neither is independently reconstructed from the selected records.
 
@@ -10,7 +10,7 @@ The transaction interval runs from **24 September 19:01:20 UTC to 25 September 0
 
 Public explorer pages and shared Arkham entity views were inspected on 25 September 2026. Transaction observations are recorded with chain, hash, UTC time, asset, amount, parties, result and analytical role in [the evidence register](EVIDENCE_REGISTER.md) and [structured dataset](data/transactions.json).
 
-The official notice and records A2, A3, A5, X1, X2, X4, X5 and X6 were checked again on the same day. The retained files include three Arbiscan/XRPSCAN transaction screenshots, five visible XRPSCAN Raw JSON views, full address lists for two public Arkham labels, and six overlapping Arkham viewports. The [capture manifest](data/capture-manifest.json) records source URLs, file-save times and SHA-256 digests. File-save times are filesystem metadata, not trusted timestamp attestations; digests establish file identity, not source authenticity.
+The official notice and central transaction observations were checked again on the same day. X3 and the small incoming payments D1–D3 were additionally archived to reconcile source 2. The retained files include three Arbiscan/XRPSCAN transaction screenshots, nine visible XRPSCAN Raw JSON views, full address lists for two public Arkham labels, and six overlapping Arkham viewports. The [capture manifest](data/capture-manifest.json) records source URLs, file-save times and SHA-256 digests. File-save times are filesystem metadata, not trusted timestamp attestations; digests establish file identity, not source authenticity.
 
 Other observations are preserved as transcribed fields and source links. Exact per-page capture times for the earlier session were not retained. The Arkham files preserve a later 25 September view, not a verifiable 09:15 UTC snapshot. Current explorer labels and entity membership may differ from either observation. No independent node query or cryptographic verification of provider responses was performed.
 
@@ -20,7 +20,7 @@ Other observations are preserved as transcribed fields and source links. Exact p
 |---|---|---|
 | Official statement | What Bitget publicly reported | Not independent confirmation of loss, architecture or cause |
 | Explorer observation | Fields or events inspected on a public transaction page | Provider rendering and decoding; not independent node validation |
-| Archived explorer representation | Visible Raw JSON views of X1, X2, X4, X5 and X6, retained for offline checks | Includes provider-normalized fields; not authenticated RPC responses |
+| Archived explorer representation | Visible Raw JSON views of X1–X6 and D1–D3, retained for offline checks | Includes provider-normalized fields; not authenticated RPC responses |
 | Third-party research | Public analyst totals, hypotheses and shared entities | Sources may reuse the same upstream evidence |
 | Derived result | Arithmetic or comparison applied to recorded observations | Conditional on input accuracy and the selected population |
 | Hypothesis | A proposed explanation or monitoring rule | Requires discriminating evidence or evaluation |
@@ -32,6 +32,7 @@ Search results and research summaries supplied discovery leads. Transaction clai
 - **Selected initial receipts:** A1 and X1/X2/X6 are the sampled external receipts. Their combined value is not presented as a complete incident total.
 - **Failed payments:** X4 remains in the behavioral timeline but contributes zero delivered XRP to the receipt sum. Its requested amount is retained separately.
 - **Source-account transfers:** X3 and X5 are excluded from the external-receipt total because they move value between the two Bitget-labeled source accounts.
+- **Small incoming payments:** D1–D3 explain source-2 balance changes and are excluded from incident outflows. Their senders and purposes are not attributed.
 - **Downstream turnover:** Onward transfers, swaps, wrapping and bridge events are not added to initial loss.
 - **Asset identity:** A5 is excluded from the canonical-USDT0 graph because its event-emitting contract differs. A repeated amount or shortened-address resemblance does not resolve that difference.
 - **Cross-chain continuity:** A4 establishes a source deposit. Its destination remains unresolved until the corresponding execution is matched. E2 is an observed mint with an unmatched source burn in this study.
@@ -41,9 +42,9 @@ Amounts are stored as decimal strings. E2 retains only the precision observed in
 
 ## Reproduction and interpretation
 
-The [offline checker](scripts/reproduce.py) checks hashes, parties, results and delivered amounts in the archived XRPL views before summing the three selected successful receipts. It calculates the counterfactual overstatement from adding X4's requested amount, checks X4's fee-only balance change, compares X5's ending balance with X6's starting balance, checks selected intervals and amount differences, and compares the noncanonical contract/address values. It also reproduces the archived Arkham set difference. Results are recorded in [VALIDATION.md](VALIDATION.md).
+The [offline checker](scripts/reproduce.py) checks hashes, parties, results and delivered amounts in the archived XRPL views before summing the three selected successful receipts. It calculates the counterfactual overstatement from adding X4's requested amount, checks X4's fee-only balance change, reconciles eight source-2 AccountRoot updates using delivery/fee arithmetic, seven balance links and seven predecessor transaction/ledger references, checks selected intervals and amount differences, and compares the noncanonical contract/address values. It also reproduces the archived Arkham set difference. Results are recorded in [VALIDATION.md](VALIDATION.md).
 
-The XRP `floor(balance) × 0.9` hypothesis is attributed to [YFarmX](https://yfarmx.com/bitget-postmortem-2026/). Reproducing two equalities does not establish automation or stale-balance causation. A treasury baseline, complete surrounding history and internal authorization records would be needed to distinguish competing explanations.
+The selected XRP receipt population, X4 failure classification and `floor(balance) × 0.9` hypothesis follow [YFarmX](https://yfarmx.com/bitget-postmortem-2026/). Reproducing two equalities does not establish automation or stale-balance causation. A treasury baseline, complete surrounding history and internal authorization records would be needed to distinguish competing explanations.
 
 The lookalike-record and entity-set comparisons are observations within this investigation. No exhaustive prior-art search establishes first discovery. The 8.88% counterfactual is an accounting illustration on this sample, not a measured provider error rate or detector-performance result.
 
@@ -52,10 +53,9 @@ The lookalike-record and entity-set comparisons are observations within this inv
 | Priority | Question | Evidence needed | Analytical consequence |
 |---|---|---|---|
 | 1 | Can the total loss be independently reconciled? | All initial receipts, chain/asset identity, deduplication rules and timestamped prices | Prevents partial scope or downstream turnover from becoming a false total |
-| 1 | Does the TRX item belong to the same initial-outflow population? | Source transactions and a consistent classification rule | Resolves a material difference between public estimates |
 | 1 | Can the central observations be independently replayed? | Saved node receipts/logs or validated XRPL metadata with block/ledger references | Reduces dependence on explorer rendering |
 | 2 | Did the Across deposit complete, refund or partially fill? | Matched destination execution for A4 | Completes one cross-chain edge |
-| 2 | Does E2 match the proposed source burn? | CCTP message-level match | Avoids linking movements solely by time and value |
+| 2 | Which source burn corresponds to E2? | CCTP message-level match | Avoids linking movements solely by time and value |
 | 2 | Is the XRPL refill sequence abnormal? | Full surrounding history, normal treasury baseline and internal authorization records | Distinguishes incident behavior from routine operations |
 | 3 | How much did all swaps return? | Complete execution population and contemporaneous reference prices | Supports aggregate proceeds and slippage analysis |
 
