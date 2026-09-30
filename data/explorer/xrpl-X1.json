@@ -1,0 +1,65 @@
+{
+  "Amount": "2248871536237",
+  "DeliverMax": "2248871536237",
+  "AuthAccounts": [],
+  "NFTokenOffers": [],
+  "Paths": [],
+  "CredentialIDs": [],
+  "SignerEntries": [],
+  "GenesisMints": [],
+  "Account": "rGDreBvnHrX1get7na3J4oowN19ny4GzFn",
+  "Destination": "rwNhefsz1UQEusxhCvHip3RANinWi4CTck",
+  "DestinationTag": 0,
+  "Fee": 20,
+  "Flags": 2147483648,
+  "LastLedgerSequence": 107210787,
+  "Sequence": 1645551,
+  "SigningPubKey": "02024F808D657322E73CEA9A0109CDBD9A3A56552CA87F847DD8558B47CD0F2E20",
+  "TransactionType": "Payment",
+  "TxnSignature": "304402202BB4B3CEF00869CA3F46B610F202D4013CA9FE5EFAC9C69627E3C181D91AD6A2022037280840A7633C51A17FAA06F3DA2E3B2C42AC921F47BAE49155CB6376ABEAE2",
+  "Memos": [],
+  "Signers": [],
+  "AcceptedCredentials": [],
+  "Hooks": [],
+  "hash": "9926E440BC17F3EE7ACB91DB09A44B9781876B19C6E2D046E5E225F758FB25F4",
+  "ledger_index": 107209789,
+  "ctid": "C663E43D00290000",
+  "validated": true,
+  "meta": {
+    "delivered_amount": "2248871536237",
+    "AffectedNodes": [
+      {
+        "CreatedNode": {
+          "LedgerEntryType": "AccountRoot",
+          "LedgerIndex": "4A6FA5DBF943B277185572AEB18DE3AED873A036AF53803986B8DF21AE2A06E9",
+          "NewFields": {
+            "Account": "rwNhefsz1UQEusxhCvHip3RANinWi4CTck",
+            "Balance": "2248871536237",
+            "Sequence": 107209789
+          }
+        }
+      },
+      {
+        "ModifiedNode": {
+          "FinalFields": {
+            "Account": "rGDreBvnHrX1get7na3J4oowN19ny4GzFn",
+            "Balance": "171783578949",
+            "Flags": 131072,
+            "OwnerCount": 2,
+            "Sequence": 1645552
+          },
+          "LedgerEntryType": "AccountRoot",
+          "LedgerIndex": "8719BD164C9F79A760E19FB64691885E63CC595032E559971F89C1E22EAEC220",
+          "PreviousFields": {
+            "Balance": "2420655115206",
+            "Sequence": 1645551
+          },
+          "PreviousTxnID": "D9E142A61F412FB2B45B8213229A02DA2D3454B5525BD3B5B6CA7C1527464585",
+          "PreviousTxnLgrSeq": 107209788
+        }
+      }
+    ],
+    "TransactionIndex": 41,
+    "TransactionResult": "tesSUCCESS"
+  }
+}

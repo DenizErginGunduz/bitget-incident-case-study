@@ -1,0 +1,122 @@
+# Worked investigation guide
+
+Read this alongside the [evidence register](EVIDENCE_REGISTER.md). All transaction times below are UTC. Use the linked transaction hashes to reproduce the checks; an explorer's live prices, labels and page layout may change.
+
+## 1. Define the population before drawing the graph
+
+**Question:** Are we counting initial unauthorized outflows, downstream movements, attempted payments or present holdings?
+
+Start with a worksheet that keeps those categories separate. An initial outflow can later appear as a collector transfer, several swaps and a bridge payout. Adding those rows measures repeated turnover of the same funds. An Arkham entity's current holdings are also affected by subsequent movements, prices and membership choices.
+
+In this release, only A1 and X1/X2/X6 are included as selected initial external receipts. The USD incident estimate comes from Bitget. We have not reconciled the full incident population, all chains or all first recipients. The sample was selected from public leads and manually inspected; it is not random or representative.
+
+**Record:** chain, hash, time, source, recipient, asset identifier, amount, transaction result, role in the timeline, source URL and unresolved interpretation.
+
+## 2. Establish a real token transfer
+
+Open **A1**, then **A2**, in Arbiscan. Check success, UTC time, token contract and full addresses. The USDT0 contract used by both records is:
+
+`0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9`
+
+A1 records 19,668,851.773202 USDT0 reaching the collector. A2 records 19,668,851.77 reaching the staging address 32 minutes 54 seconds later. The difference is 0.003202 USDT0; its cause is not inferred here. A2 is a continuation, not another loss.
+
+**Why:** A token's displayed name or symbol is insufficient to establish asset identity. The relevant evidence is chain-specific contract identity and the transfer event, together with transaction success. Wallet identity remains a separate label claim.
+
+**Stop condition:** If the contract, recipient or result cannot be established, leave the row unresolved. Do not repair missing evidence with a matching dollar amount.
+
+## 3. Challenge the convincing-looking row
+
+Open **A5**. Its displayed amount matches A2, but its contract is:
+
+`0xEE4b70720945fDd39bb88D4eB8FfA4cA018986b7`
+
+The following full addresses come from the explorer's visible transfer links:
+
+| Role | Actual address in A2 | Lookalike in A5 |
+|---|---|---|
+| Collector | `0x770b10b273fC44Fe9197D6bF20F145c2e98463Ee` | `0x770b1a3789F71427D4216d19f73DA558503463Ee` |
+| Staging | `0xe410a2E5710Ee787bcaa63f52A3943ff71F0d946` | `0xe4107cc60D53C494eb66D9cC478855d2EE10d946` |
+
+![Arbiscan excerpt showing the different contract and the first repeated-amount row](assets/arb-lookalike-record.png)
+
+![Arbiscan excerpt showing the reverse lookalike transfer row](assets/arb-lookalike-reverse.png)
+
+*Two viewports from A5 show the selected lookalike rows; they are excerpts from 74 displayed token records. The contract address and full transaction identity are visible on the source page.*
+
+These are two separate event rows. The first names the **actual collector → lookalike staging address**; the second names the **lookalike collector → actual staging address**. Both display 19,668,851.77 units of the noncanonical contract. Neither row has two lookalike endpoints. A `from` address named in a token event also does not establish that the named account signed or authorized the transaction.
+
+**Why:** A transfer event emitted by another contract is not evidence that canonical USDT0 moved. Even a genuine event log can describe an economically irrelevant asset. Here the appropriate outcome is to exclude these rows from the USDT0 flow graph and preserve them separately as data-quality evidence. The sender's phishing label is an explorer assertion; the contract/address mismatch is the directly inspectable distinction.
+
+**Limit:** This is consistent with address-history contamination. We do not establish its author's intent, ownership or connection to the incident perpetrators. We have not shown that any analytics product misclassified the rows.
+
+## 4. Read a swap from asset movements
+
+Open **A3**. Inspect the token and internal native-asset movements together. In the selected execution, 5,000,000 USDT0 leaves the staging account for `0xD767…A6836`, then moves toward `0x11111605…CA11` before multiple pool legs. The visible internal transfers show 1,829.128842525455829038 ETH from Arbitrum WETH (`0x82aF…bAB1`) to `0xD767…A6836`, onward to the UniswapX Dutch Order Reactor (`0xB274…a87c`), and finally from that reactor to the staging account. The top-level envelope sender is another address, `0x5F8D…17a2`.
+
+**Why:** A solver or contract may submit a transaction on behalf of an order. Clustering every top-level sender or contract into the investigated party would mix execution infrastructure with the economic parties.
+
+**Record:** each relevant asset leg and its recipient; keep the transaction envelope sender in its own field. These selected legs do not reconcile every event in the execution. One 5 million USDT0 slice does not establish conversion of the full balance, aggregate proceeds or slippage against a historical market benchmark.
+
+## 5. Preserve a bridge's unresolved destination
+
+Open **A4**, then its decoded event logs. The source-side deposit records destination chain 1, deposit ID 4687600, staging address as depositor/recipient, and requested output 499.8760016628046495 WETH for a 500 ETH-equivalent input.
+
+**Why:** A successful source deposit establishes a source event and intended destination. A completed cross-chain path needs the destination execution too. Matching only an approximate amount and nearby timestamp is weak evidence when many transfers use the same bridge.
+
+**Next check:** reconcile the protocol's source-chain/deposit identifiers, recipient, tokens and amounts with the destination fill; inspect partial fills, refunds or changed execution where applicable. Until then the destination edge stays dashed. The observed Circle CCTP mint E2 has a similar boundary: this release has not matched it to a source burn message.
+
+## 6. Separate XRP amount requested from value delivered
+
+Open **X4** in XRPSCAN. Read the outcome before using the amount. The UI says `tecUNFUNDED_PAYMENT`. Expand **Raw JSON** and inspect `meta.TransactionResult` and the modified account's previous and final balances.
+
+The archived explorer representation records a requested 9,142,093.8 XRP but a balance reduction of only 20 drops, or 0.000020 XRP. It contains no destination-account balance increase. Its `validated` flag is an explorer-provided field, not our independent node attestation.
+
+![Requested amount and fee-only balance change](assets/xrp-failed-payment.png)
+
+**Why:** Successful partial payments can also differ from the requested amount. The general rule is to check transaction outcome and delivered value/metadata rather than trusting the amount field. See the [XRPL payment-monitoring guidance](https://xrpl.org/docs/concepts/payment-types/robustly-monitoring-for-payments) and [result interpretation](https://xrpl.org/docs/concepts/transactions/finality-of-results/look-up-transaction-results).
+
+X1, X2 and X6 are the selected successful external payments. X3 and X5 move XRP between two Bitget-labeled source accounts. X4 belongs in the behavioral timeline but contributes zero delivered XRP to the external-receipt total. The script reports the overcount that would result from ignoring this distinction.
+
+The retained XRPSCAN Raw JSON views cover all nine XRP records in the register, including X3 and the three small incoming payments D1–D3. The receipt selections and X4's failed-payment classification follow YFarmX; the archived metadata allows those classifications and the derived arithmetic to be checked offline.
+
+## 7. Ask what the refill means without claiming its cause
+
+| Time, 24 September | Event | Analyst question |
+|---|---|---|
+| 19:28:02 | X3: 2,000,000 XRP moves between source accounts | Was this an ordinary treasury instruction? |
+| 20:28:20 | X4: external payment fails | What submitted it, and using which balance? |
+| 20:40:02 | X5: source receives 2,183,079.516298 XRP | What triggered or approved the refill? |
+| 21:19:21 | X6: 9,306,865.8 XRP reaches the external recipient | Did the same workflow or authority submit it? |
+
+The refill precedes the successful payment by 39 minutes 19 seconds. Temporal order alone does not establish that the attacker requested the refill or that a specific control failed.
+
+### Reconcile source 2 down to the drop
+
+For `rwTTsHVUDF8Ub2nzV2oAeWxfJzUvobXLEf`, inspect each `AccountRoot` balance change and its `PreviousTxnID` and `PreviousTxnLgrSeq`. These fields identify the previous modification of that ledger object; see the [XRPL AccountRoot reference](https://xrpl.org/docs/references/protocol/ledger-data/ledger-entry-types/accountroot). The retained metadata links the following eight updates. Each opening balance equals the preceding closing balance.
+
+| UTC time | Record | Change in source 2 balance (XRP, including its fees) | Closing balance (XRP) |
+|---|---|---:|---:|
+| 19:16:20 | X2 external payment | −91,420,942.755728 | 10,157,882.528393 |
+| 19:16:31 | D1 small incoming payment | +0.000010 | 10,157,882.528403 |
+| 19:28:02 | X3 source-account transfer | −2,000,000.000020 | 8,157,882.528383 |
+| 19:28:31 | D2 small incoming payment | +0.000010 | 8,157,882.528393 |
+| 20:28:20 | X4 failed attempt; fee only | −0.000020 | 8,157,882.528373 |
+| 20:40:02 | X5 refill | +2,183,079.516298 | 10,340,962.044671 |
+| 20:40:32 | D3 small incoming payment | +0.000010 | 10,340,962.044681 |
+| 21:19:21 | X6 external payment | −9,306,865.800020 | 1,034,096.244661 |
+
+D1, D2 and D3 arrived 11, 29 and 30 seconds after X2, X3 and X5 respectively. Their sender addresses are retained in the dataset. These small payments explain the balance differences; their timing does not establish who sent them or why. This is continuity of the archived source-2 AccountRoot updates in this interval, not a reconstruction of source 1 or every associated ledger object.
+
+The [YFarmX hypothesis](https://yfarmx.com/bitget-postmortem-2026/) compares X4's requested amount with `floor(X2 closing balance in XRP) × 0.9`, and X6's amount with `floor(X6 opening balance in XRP) × 0.9`. Both equalities hold. The small payments do not change those integer floors. That supports testing stale-balance or repeated-amount logic; it does not establish automation or the authorization path.
+
+X2, X3, X4 and X6 also contain the same `SigningPubKey` in the retained representations. This is a public signing-key observation, not evidence identifying the human operator or the compromise mechanism. A normal treasury baseline, signing-service records and internal approvals are needed to distinguish routine operations from misuse.
+
+## 8. Audit a cluster before extending it
+
+The two public Arkham entity membership views recorded in the register contained 26 and 25 EVM addresses, with 25 in common. Their difference was `0x2b03476bC4070e3019B3D5f4EC46edC27284ecd8`. The [archived address lists](data/arkham-entity-membership.json) and overlapping [viewport captures](assets/README.md) preserve the later 25 September observation; they do not retrospectively timestamp the earlier morning observation.
+
+Open **O1**: a shared member sends that address 495.625 WETH on Optimism. This supports a transfer connection and follow-up review. It does not by itself prove common control, criminal intent or a real-world identity. An exchange, router, relayer or independent counterparty can receive value too. The shared entities may depend on the same original researcher, and the extra membership may itself have been inferred from O1. Agreement between that label and O1 is therefore not independent corroboration or a newly discovered attacker wallet.
+
+**Why:** A cluster is a hypothesis with a provenance trail. Store the reason for each candidate edge and its confidence. Avoid promoting a shared user label into an established fact.
+
+The inspected entities did not include XRPL members. Their EVM-only coverage cannot establish the absence of an XRP branch. XRPL transactions require a separate evidence source and reconciliation.
